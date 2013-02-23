@@ -21,57 +21,57 @@ namespace PequenoSpotifyModule;
 
 // set used namespaces
 use Zend\EventManager\EventInterface,
-	Zend\ModuleManager\Feature\AutoloaderProviderInterface,
-	Zend\ModuleManager\Feature\BootstrapListenerInterface,
-	Zend\ModuleManager\Feature\ConfigProviderInterface,
-	Zend\Mvc\ModuleRouteListener;
+    Zend\ModuleManager\Feature\AutoloaderProviderInterface,
+    Zend\ModuleManager\Feature\BootstrapListenerInterface,
+    Zend\ModuleManager\Feature\ConfigProviderInterface,
+    Zend\Mvc\ModuleRouteListener;
 
 class Module implements AutoloaderProviderInterface, BootstrapListenerInterface, ConfigProviderInterface
 {
     public function getAutoloaderConfig()
     {
-	    // return autoloader configuration
+        // return autoloader configuration
         return array(
-	        // classmap autoloader
+            // classmap autoloader
             'Zend\Loader\ClassMapAutoloader' => array(
                 __DIR__.'/../../autoload_classmap.php',
             ),
-	        // standard autoloader
-	        'Zend\Loader\StandardAutoloader' => array(
-		        'namespaces' => array(
-			        __NAMESPACE__ => __DIR__.'/../../src/'.str_replace('\\', '/' , __NAMESPACE__),
-		        ),
-	        ),
+            // standard autoloader
+            'Zend\Loader\StandardAutoloader' => array(
+                'namespaces' => array(
+                    __NAMESPACE__ => __DIR__.'/../../src/'.str_replace('\\', '/' , __NAMESPACE__),
+                ),
+            ),
         );
     }
 
-	/**
-	 * Get module configuration
-	 * @access public
-	 * @return array
-	 */
-	public function getConfig()
-	{
-		// return module configuration
-		return include __DIR__.'/../../config/module.config.all.php';
-	}
+    /**
+     * Get module configuration
+     * @access public
+     * @return array
+     */
+    public function getConfig()
+    {
+        // return module configuration
+        return include __DIR__.'/../../config/module.config.all.php';
+    }
 
-	/**
-	 * Listener to the bootstrap event
-	 * @access public
-	 * @param EventInterface $e
-	 * @return void
-	 */
-	public function onBootstrap(EventInterface $e)
-	{
-		/** @var \Zend\Mvc\MvcEvent $e get application event manager instance */
-		$eventManager = $e->getApplication()->getEventManager();
+    /**
+     * Listener to the bootstrap event
+     * @access public
+     * @param  EventInterface $e
+     * @return void
+     */
+    public function onBootstrap(EventInterface $e)
+    {
+        /** @var \Zend\Mvc\MvcEvent $e get application event manager instance */
+        $eventManager = $e->getApplication()->getEventManager();
 
-		// get ModuleRouteListener instance
-		$moduleRouteListener = new ModuleRouteListener();
+        // get ModuleRouteListener instance
+        $moduleRouteListener = new ModuleRouteListener();
 
-		// attach event manager to ModuleRouteListener
-		$moduleRouteListener->attach($eventManager);
-	}
+        // attach event manager to ModuleRouteListener
+        $moduleRouteListener->attach($eventManager);
+    }
 
 }

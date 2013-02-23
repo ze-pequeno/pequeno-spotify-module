@@ -21,35 +21,35 @@ namespace PequenoSpotifyModuleTest\Framework;
 
 // set used namespaces
 use PHPUnit_Framework_TestCase,
-		Zend\Di\LocatorInterface;
+    Zend\Di\LocatorInterface;
 
 class TestCase extends PHPUnit_Framework_TestCase
 {
 
-	/** @var \Zend\Di\LocatorInterface */
+    /** @var \Zend\Di\LocatorInterface */
     protected static $locator;
 
-	/**
-	 * Set Zend\Di\LocatorInterface locator instance
-	 * @access public
-	 * @static
-	 * @param LocatorInterface $locator
-	 * @return void
-	 */
-	public static function setLocator($locator)
+    /**
+     * Set Zend\Di\LocatorInterface locator instance
+     * @access public
+     * @static
+     * @param  LocatorInterface $locator
+     * @return void
+     */
+    public static function setLocator($locator)
     {
-	    // store LocatorInterface instance
+        // store LocatorInterface instance
         self::$locator = $locator;
     }
 
-	/**
-	 * Get Zend\Di\LocatorInterface locator instance
-	 * @access public
-	 * @return LocatorInterface
-	 */
+    /**
+     * Get Zend\Di\LocatorInterface locator instance
+     * @access public
+     * @return LocatorInterface
+     */
     public function getLocator()
     {
-	    // return LocatorInterface instance
+        // return LocatorInterface instance
         return self::$locator;
     }
 }
