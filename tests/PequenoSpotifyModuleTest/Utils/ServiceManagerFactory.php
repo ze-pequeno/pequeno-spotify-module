@@ -28,9 +28,6 @@ class ServiceManagerFactory
 	/** @var array */
 	protected static $config;
 
-	/** @var ServiceManager */
-	protected static $serviceManager;
-
 	/**
 	 * Set ServiceManager configuration
 	 * @access public
@@ -44,35 +41,29 @@ class ServiceManagerFactory
 	}
 
 	/**
-	 * Builds a new service manager
+	 * Create a new service manager instance
 	 * @access public
 	 * @static
 	 * @return ServiceManager
 	 */
-	public static function getServiceManager()
+	public static function createServiceManager()
 	{
-		// check if ServiceManager instance exist
-		if (self::$serviceManager === null) {
+		// get service manager configuration
+		$smConfig = isset(static::$config['service_manager']) ? static::$config['service_manager'] : array();
 
-			// get service manager configuration
-			$smConfig = isset(static::$config['service_manager']) ? static::$config['service_manager'] : array();
+		// create ServiceManager from ServiceManagerConfig
+		$serviceManager = new ServiceManager(new ServiceManagerConfig($smConfig));
 
-			// create ServiceManager from ServiceManagerConfig
-			self::$serviceManager = new ServiceManager(new ServiceManagerConfig($smConfig));
+		// set ApplicationConfig and ServiceListener to ServiceManager
+		$serviceManager->setService('ApplicationConfig', static::$config);
+		$serviceManager->setFactory('ServiceListener', 'Zend\Mvc\Service\ServiceListenerFactory');
 
-			// set ApplicationConfig and ServiceListener to ServiceManager
-			self::$serviceManager->setService('ApplicationConfig', static::$config);
-			self::$serviceManager->setFactory('ServiceListener', 'Zend\Mvc\Service\ServiceListenerFactory');
+		/** @var $moduleManager \Zend\ModuleManager\ModuleManager */
+		$moduleManager = $serviceManager->get('ModuleManager');
 
-			/** @var $moduleManager \Zend\ModuleManager\ModuleManager */
-			$moduleManager = self::$serviceManager->get('ModuleManager');
-
-			// load module and ServiceManager
-			$moduleManager->loadModules();
-		}
-
-		// return ServiceManager instance
-		return self::$serviceManager;
+		// load modules and return ServiceManager instance
+		$moduleManager->loadModules();
+		return $serviceManager;
 	}
 
 }
