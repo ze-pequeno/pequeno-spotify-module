@@ -1,6 +1,7 @@
 {
     "minimum-stability": "dev",
     "require": {
+	    "zendframework/zendframework": "2.*",
 	    "ze-pequeno/pequeno-spotify-module": "dev-master"
     }
 }
