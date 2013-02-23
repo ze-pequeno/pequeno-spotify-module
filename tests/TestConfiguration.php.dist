@@ -31,7 +31,7 @@
 
 // setup directories to search ZF2 library
 $directories = array(
-	__DIR__.'/../../../vendor/zendframework/zendframework/library/',
+	__DIR__.'/../../../../vendor/zendframework/zendframework/library/',
 	'E:/library/zend/zendframework2/latest/library/',
 	'G:/library/zend/zendframework2/latest/library/',
 );
@@ -57,7 +57,7 @@ foreach ($directories as $directory) {
  */
 
 // Override the module name (usually because the namespace is something besides the root foldername)
-// define('MODULE_NAME', 'SomeModuleName');
+define('MODULE_NAME', 'PequenoSpotifyModule');
 
 // Add additional paths where additional modules can be found
 // $additionalModulePaths = array(
