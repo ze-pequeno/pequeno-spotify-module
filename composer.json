@@ -1,0 +1,33 @@
+{
+    "name": "ze-pequeno/pequeno-spotify-module",
+    "description": "Zend Framework 2 Module for Spotify Web API",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "service",
+        "spotify",
+        "module",
+        "zf2"
+    ],
+    "homepage": "https://github.com/ze-pequeno/PequenoSpotifyModule",
+    "authors": [
+        {
+            "name": "Cyril Martin",
+            "email": "cyril.martin.cm@gmail.com",
+            "homepage": "http://ze-pequeno.github.com/"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.3"
+    },
+    "autoload": {
+        "psr-0": {
+            "PequenoSpotifyModule": "src/",
+            "PequenoSpotifyModuleTest": "tests/"
+        },
+        "classmap": [
+            "./Module.php"
+        ]
+    }
+}
