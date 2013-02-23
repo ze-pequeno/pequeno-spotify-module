@@ -1,0 +1,6 @@
+{
+    "minimum-stability": "dev",
+    "require": {
+	    "ze-pequeno/pequeno-spotify-module": "dev-master"
+    }
+}
