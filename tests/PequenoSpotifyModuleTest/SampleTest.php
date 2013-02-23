@@ -19,11 +19,14 @@
 // set class namespace
 namespace PequenoSpotifyModuleTest;
 
+// set used namespaces
+use PequenoSpotifyModuleTest\Utils\ServiceManagerFactory;
+
 class SampleTest extends Framework\TestCase
 {
 
     public function testSample()
     {
-        $this->assertInstanceOf('Zend\Di\LocatorInterface', $this->getLocator());
+        $this->assertInstanceOf('Zend\ServiceManager\ServiceManager', ServiceManagerFactory::getServiceManager());
     }
 }
