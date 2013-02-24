@@ -21,7 +21,7 @@ namespace PequenoSpotifyModuleTest;
 
 // set used namespaces
 use PequenoSpotifyModuleTest\Utils\ServiceManagerFactory,
-	PequenoSpotifyModuleTest\Framework\TestCase;
+    PequenoSpotifyModuleTest\Framework\TestCase;
 
 class SampleTest extends TestCase
 {

@@ -21,49 +21,50 @@ namespace PequenoSpotifyModuleTest\Utils;
 
 // set used namespaces
 use Zend\ServiceManager\ServiceManager,
-	Zend\Mvc\Service\ServiceManagerConfig;
+    Zend\Mvc\Service\ServiceManagerConfig;
 
 class ServiceManagerFactory
 {
-	/** @var array */
-	protected static $config;
+    /** @var array */
+    protected static $config;
 
-	/**
-	 * Set ServiceManager configuration
-	 * @access public
-	 * @param array $config
-	 * @return void
-	 */
-	public static function setConfig(array $config)
-	{
-		// store configuration
-		static::$config = $config;
-	}
+    /**
+     * Set ServiceManager configuration
+     * @access public
+     * @param  array $config
+     * @return void
+     */
+    public static function setConfig(array $config)
+    {
+        // store configuration
+        static::$config = $config;
+    }
 
-	/**
-	 * Create a new service manager instance
-	 * @access public
-	 * @static
-	 * @return ServiceManager
-	 */
-	public static function createServiceManager()
-	{
-		// get service manager configuration
-		$smConfig = isset(static::$config['service_manager']) ? static::$config['service_manager'] : array();
+    /**
+     * Create a new service manager instance
+     * @access public
+     * @static
+     * @return ServiceManager
+     */
+    public static function createServiceManager()
+    {
+        // get service manager configuration
+        $smConfig = isset(static::$config['service_manager']) ? static::$config['service_manager'] : array();
 
-		// create ServiceManager from ServiceManagerConfig
-		$serviceManager = new ServiceManager(new ServiceManagerConfig($smConfig));
+        // create ServiceManager from ServiceManagerConfig
+        $serviceManager = new ServiceManager(new ServiceManagerConfig($smConfig));
 
-		// set ApplicationConfig and ServiceListener to ServiceManager
-		$serviceManager->setService('ApplicationConfig', static::$config);
-		$serviceManager->setFactory('ServiceListener', 'Zend\Mvc\Service\ServiceListenerFactory');
+        // set ApplicationConfig and ServiceListener to ServiceManager
+        $serviceManager->setService('ApplicationConfig', static::$config);
+        $serviceManager->setFactory('ServiceListener', 'Zend\Mvc\Service\ServiceListenerFactory');
 
-		/** @var $moduleManager \Zend\ModuleManager\ModuleManager */
-		$moduleManager = $serviceManager->get('ModuleManager');
+        /** @var $moduleManager \Zend\ModuleManager\ModuleManager */
+        $moduleManager = $serviceManager->get('ModuleManager');
 
-		// load modules and return ServiceManager instance
-		$moduleManager->loadModules();
-		return $serviceManager;
-	}
+        // load modules and return ServiceManager instance
+        $moduleManager->loadModules();
+
+        return $serviceManager;
+    }
 
 }

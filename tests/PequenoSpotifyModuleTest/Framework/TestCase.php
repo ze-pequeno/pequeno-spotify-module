@@ -21,14 +21,14 @@ namespace PequenoSpotifyModuleTest\Framework;
 
 // set used namespaces
 use PequenoSpotifyModuleTest\Utils\ServiceManagerFactory,
-	PHPUnit_Framework_TestCase,
-	Zend\ServiceManager\ServiceManager;
+    PHPUnit_Framework_TestCase,
+    Zend\ServiceManager\ServiceManager;
 
 class TestCase extends PHPUnit_Framework_TestCase
 {
 
-	/** @var ServiceManager */
-	protected $serviceManager;
+    /** @var ServiceManager */
+    protected $serviceManager;
 
     /**
      * Get \Zend\ServiceManager\ServiceManager instance
@@ -37,14 +37,14 @@ class TestCase extends PHPUnit_Framework_TestCase
      */
     public function getServiceManager()
     {
-	    // check we don't have ServiceManager instance
-	    if (!($this->serviceManager instanceof ServiceManager)) {
+        // check we don't have ServiceManager instance
+        if (!($this->serviceManager instanceof ServiceManager)) {
 
-		    // create ServiceManager instance from factory
-		    $this->serviceManager = ServiceManagerFactory::createServiceManager();
-	    }
+            // create ServiceManager instance from factory
+            $this->serviceManager = ServiceManagerFactory::createServiceManager();
+        }
 
-	    // return ServiceManager instance
-	    return $this->serviceManager;
+        // return ServiceManager instance
+        return $this->serviceManager;
     }
 }
