@@ -65,6 +65,27 @@ class Artist extends AbstractItem
     }
 
     /**
+     * Build Artsit with URI and name
+     * @access public
+     * @static
+     * @param  string $uri  Artist URI
+     * @param  string $name Artist name
+     * @return Artist
+     */
+    public static function build($uri, $name)
+    {
+        // create Artist instance
+        $artistItem = new self();
+
+        // update informations
+        $artistItem->setUri((string) $uri);
+        $artistItem->setName((string) $name);
+
+        // return artist instance
+        return $artistItem;
+    }
+
+    /**
      * Extract Artist informations from object
      * @access public
      * @static
@@ -74,11 +95,7 @@ class Artist extends AbstractItem
     public static function extractInfos($artist)
     {
         // create Artist instance
-        $artistItem = new self();
-
-        // update informations
-        $artistItem->setUri((string) $artist->href);
-        $artistItem->setName((string) $artist->name);
+        $artistItem = self::build($artist->href, $artist->name);
 
         // is popularity available ?
         if (isset($artist->popularity)) {

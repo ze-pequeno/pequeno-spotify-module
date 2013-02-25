@@ -25,11 +25,20 @@ class Album extends AbstractItem
     /** @var string */
     protected $_released = null;
 
+    /** @var Track[] */
+    protected $_tracks = null;
+
     /** @var Artist[] */
     protected $_artists = null;
 
+    /** @var Artist */
+    protected $_artist = null;
+
     /** @var ExternalId[] */
     protected $_externalIds = null;
+
+    /** @var string[] */
+    protected $_territories = null;
 
     /**
      * Initialize datas
@@ -44,7 +53,34 @@ class Album extends AbstractItem
         // initialize specific datas
         $this->_released    = '';
         $this->_artists     = array();
+        $this->_tracks      = array();
         $this->_externalIds = array();
+        $this->_territories  = array();
+    }
+
+    /**
+     * Set principal album artist
+     * @access public
+     * @param  Artist $artist Principal album artist
+     * @return Album
+     */
+    public function setArtist($artist)
+    {
+        // store artist and return self
+        $this->_artist = $artist;
+
+        return $this;
+    }
+
+    /**
+     * Set principal album artist
+     * @access public
+     * @return Artist
+     */
+    public function getArtist()
+    {
+        // return artists
+        return $this->_artist;
     }
 
     /**
@@ -70,6 +106,56 @@ class Album extends AbstractItem
     {
         // return artists
         return (array) $this->_artists;
+    }
+
+    /**
+     * Set album tracks
+     * @access public
+     * @param  Track[] $tracks Album tracks
+     * @return Album
+     */
+    public function setTracks($tracks)
+    {
+        // store tracks and return self
+        $this->_tracks = (array) $tracks;
+
+        return $this;
+    }
+
+    /**
+     * Set album tracks
+     * @access public
+     * @return Track[]
+     */
+    public function getTracks()
+    {
+        // return tracks
+        return (array) $this->_tracks;
+    }
+
+    /**
+     * Set album territories availability
+     * @access public
+     * @param  string[] $territories Album territories availability
+     * @return Album
+     */
+    public function setTerritories($territories)
+    {
+        // store territories availability and return self
+        $this->_territories = (array) $territories;
+
+        return $this;
+    }
+
+    /**
+     * Get album territories availability
+     * @access public
+     * @return string[]
+     */
+    public function getTerritories()
+    {
+        // return territories availability
+        return (array) $this->_territories;
     }
 
     /**
@@ -152,7 +238,14 @@ class Album extends AbstractItem
             $albumItem->setReleased((string) $album->released);
         }
 
-        // is artists available ?
+        // is teritories availabality available ?
+        if (isset($album->availability) && isset($album->availability->territories)) {
+
+            // update territories availability
+            $albumItem->setTerritories(explode(' ', $album->availability->territories));
+        }
+
+        // is artists available (from search service) ?
         if (isset($album->artists) && is_array($album->artists)) {
 
             // setup artists container
@@ -167,6 +260,29 @@ class Album extends AbstractItem
 
             // set artists of album
             $albumItem->setArtists($artists);
+
+        // is artists available (from lookup service) ?
+        } elseif (isset($album->{'artist-id'}) && isset($album->artist)) {
+
+            // create and store principal artist
+            $albumItem->setArtist(Artist::build($album->{'artist-id'}, $album->artist));
+        }
+
+        // is tracks available ?
+        if (isset($album->tracks) && is_array($album->tracks)) {
+
+            // setup tracks container
+            $tracks = array();
+
+            // iterate external ids
+            foreach ($album->tracks as $track) {
+
+                // create Track and store on container
+                $tracks[] = Track::extractInfos($track);
+            }
+
+            // set albums tracks
+            $albumItem->setTracks($tracks);
         }
 
         // is external ids available ?

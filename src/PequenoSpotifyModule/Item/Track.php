@@ -22,6 +22,9 @@ namespace PequenoSpotifyModule\Item;
 class Track extends AbstractItem
 {
 
+    /** @var int */
+    protected $_discNumber = null;
+
     /** @var float */
     protected $_length = null;
 
@@ -48,9 +51,10 @@ class Track extends AbstractItem
         parent::initialize();
 
         // initialize specific datas
-        $this->_length      = 0.0;
+        $this->_discNumber  = 0;
         $this->_trackNumber = 0;
-        $this->_album       = new Album();
+        $this->_length      = 0.0;
+        $this->_album       = null;
         $this->_artists     = array();
         $this->_externalIds = array();
     }
@@ -78,6 +82,31 @@ class Track extends AbstractItem
     {
         // return tracj length
         return (float) $this->_length;
+    }
+
+    /**
+     * Set track disc number
+     * @access public
+     * @param  int   $discNumber Track disc number
+     * @return Track
+     */
+    public function setDiscNumber($discNumber)
+    {
+        // store disc number and return self
+        $this->_discNumber = (int) $discNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get track disc number
+     * @access public
+     * @return int
+     */
+    public function getDiscNumber()
+    {
+        // return disc number
+        return (int) $this->_discNumber;
     }
 
     /**
@@ -201,6 +230,13 @@ class Track extends AbstractItem
 
             // update popularity
             $trackItem->setPopularity((float) $track->popularity);
+        }
+
+        // is disc number available ?
+        if (isset($track->{'disc-number'})) {
+
+            // update disc number
+            $trackItem->setDiscNumber($track->{'disc-number'});
         }
 
         // is track number available ?
