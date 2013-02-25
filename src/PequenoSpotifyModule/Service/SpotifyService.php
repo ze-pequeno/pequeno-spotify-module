@@ -287,7 +287,7 @@ class SpotifyService
      * @param  int       $page  Page number
      * @return ResultSet
      */
-    public function searchAlbum($album, $page)
+    public function searchAlbum($album, $page = 1)
     {
         // search album from Spotify
         $rawResult = $this->send(self::SEARCH_SERVICE, self::SEARCH_ALBUM, array(
@@ -306,7 +306,7 @@ class SpotifyService
      * @param  int       $page   Page number
      * @return ResultSet
      */
-    public function searchArtist($artist, $page)
+    public function searchArtist($artist, $page = 1)
     {
         // search artist from Spotify
         $rawResult = $this->send(self::SEARCH_SERVICE, self::SEARCH_ARTIST, array(
@@ -325,7 +325,7 @@ class SpotifyService
      * @param  int       $page  Page number
      * @return ResultSet
      */
-    public function searchTrack($track, $page)
+    public function searchTrack($track, $page = 1)
     {
         // search artist from Spotify
         $rawResult = $this->send(self::SEARCH_SERVICE, self::SEARCH_TRACK, array(
