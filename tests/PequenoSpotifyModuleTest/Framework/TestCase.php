@@ -20,7 +20,8 @@
 namespace PequenoSpotifyModuleTest\Framework;
 
 // set used namespaces
-use PequenoSpotifyModuleTest\Utils\ServiceManagerFactory,
+use PequenoSpotifyModule\Service\SpotifyService,
+    PequenoSpotifyModuleTest\Utils\ServiceManagerFactory,
     PHPUnit_Framework_TestCase,
     Zend\ServiceManager\ServiceManager;
 
@@ -29,6 +30,9 @@ class TestCase extends PHPUnit_Framework_TestCase
 
     /** @var ServiceManager */
     protected $serviceManager;
+
+    /** @var SpotifyService */
+    protected $spotify;
 
     /**
      * Get \Zend\ServiceManager\ServiceManager instance
@@ -47,4 +51,23 @@ class TestCase extends PHPUnit_Framework_TestCase
         // return ServiceManager instance
         return $this->serviceManager;
     }
+
+    /**
+     * Get SpotifyService instance
+     * @access public
+     * @return SpotifyService
+     */
+    public function getSpotifyService()
+    {
+        // check we don't have SpotifyService instance
+        if (!($this->spotify instanceof SpotifyService)) {
+
+            // create SpotifyService instance from factory
+            $this->spotify = $this->getServiceManager()->get('Pequeno\Service\SpotifyService');
+        }
+
+        // return SpotifyService instance
+        return $this->spotify;
+    }
+
 }

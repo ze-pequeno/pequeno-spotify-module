@@ -20,14 +20,37 @@
 namespace PequenoSpotifyModuleTest;
 
 // set used namespaces
-use PequenoSpotifyModuleTest\Utils\ServiceManagerFactory,
-    PequenoSpotifyModuleTest\Framework\TestCase;
+use PequenoSpotifyModuleTest\Framework\TestCase;
 
-class SampleTest extends TestCase
+class ServiceManagerTest extends TestCase
 {
 
-    public function testSample()
+    public function testWillInstanciateServiceManager()
     {
+        // retrieve service manager
         $this->assertInstanceOf('Zend\ServiceManager\ServiceManager', $this->getServiceManager());
     }
+
+    public function testWillInstanciateSpotifyServiceFromFactory()
+    {
+        // retrieve spotify service from factory
+        $this->assertInstanceOf('PequenoSpotifyModule\Service\SpotifyService', $this->getServiceManager()->get('pequeno.services.spotify'));
+    }
+
+    public function testWillInstanciateSpotifyServiceFromAlias()
+    {
+        // retrieve spotify service from alias
+        $this->assertInstanceOf('PequenoSpotifyModule\Service\SpotifyService', $this->getServiceManager()->get('Pequeno\Service\SpotifyService'));
+    }
+
+    public function testSpotifyServiceFromAliasAndFactoryAreSame()
+    {
+        $this->assertSame(
+            // retrieve spotify service from factory
+            $this->getServiceManager()->get('pequeno.services.spotify'),
+            // retrieve spotify service from alias
+            $this->getServiceManager()->get('Pequeno\Service\SpotifyService')
+        );
+    }
+
 }
