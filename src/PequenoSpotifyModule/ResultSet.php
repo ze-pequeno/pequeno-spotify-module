@@ -67,20 +67,20 @@ class ResultSet implements \Iterator, \Countable
     }
 
     /**
-     * Get result total number
+     * Get result total count
      * @access public
      * @return int
      */
     public function getSizeOfResults()
     {
-        // return result total number
+        // return result total count
         return $this->_numResults;
     }
 
     /**
-     * Permet d'ajouter un item dans les résultats
+     * Add AbstractItem on search results
      * @access private
-     * @param  AbstractItem   $item Item à intégrer dans le jeu de résultat
+     * @param  AbstractItem   $item item to add at search results
      * @return AbstractItem[]
      */
     private function _addSearchResult($item)
