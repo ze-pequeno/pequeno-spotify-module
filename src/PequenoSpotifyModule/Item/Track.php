@@ -23,41 +23,22 @@ class Track extends AbstractItem
 {
 
     /** @var int */
-    protected $_discNumber = null;
+    protected $_discNumber;
 
     /** @var float */
-    protected $_length = null;
+    protected $_length;
 
     /** @var int */
-    protected $_trackNumber = null;
+    protected $_trackNumber;
 
     /** @var Album */
-    protected $_album = null;
+    protected $_album;
 
     /** @var Artist[] */
-    protected $_artists = null;
+    protected $_artists;
 
     /** @var ExternalId[] */
-    protected $_externalIds = null;
-
-    /**
-     * Initialize datas
-     * @access protected
-     * @return AbstractItem
-     */
-    protected function initialize()
-    {
-        // call parent method
-        parent::initialize();
-
-        // initialize specific datas
-        $this->_discNumber  = 0;
-        $this->_trackNumber = 0;
-        $this->_length      = 0.0;
-        $this->_album       = null;
-        $this->_artists     = array();
-        $this->_externalIds = array();
-    }
+    protected $_externalIds;
 
     /**
      * Set track length

@@ -23,13 +23,13 @@ abstract class AbstractItem
 {
 
     /** @var string */
-    protected $_uri = null;
+    protected $_uri;
 
     /** @var string */
-    protected $_name = null;
+    protected $_name;
 
     /** @var float */
-    protected $_popularity = null;
+    protected $_popularity;
 
     /**
      * Class constructor
@@ -38,24 +38,6 @@ abstract class AbstractItem
      */
     public function __construct()
     {
-        // initialiez datas
-        $this->initialize();
-    }
-
-    /**
-     * Initialize datas
-     * @access protected
-     * @return AbstractItem
-     */
-    protected function initialize()
-    {
-        // initialize datas
-        $this->_uri         = '';
-        $this->_name        = '';
-        $this->_popularity  = 0.0;
-
-        // return self
-        return $this;
     }
 
     /**

@@ -23,40 +23,22 @@ class Album extends AbstractItem
 {
 
     /** @var string */
-    protected $_released = null;
+    protected $_released;
 
     /** @var Track[] */
-    protected $_tracks = null;
+    protected $_tracks;
 
     /** @var Artist[] */
-    protected $_artists = null;
+    protected $_artists;
 
     /** @var Artist */
-    protected $_artist = null;
+    protected $_artist;
 
     /** @var ExternalId[] */
-    protected $_externalIds = null;
+    protected $_externalIds;
 
     /** @var string[] */
-    protected $_territories = null;
-
-    /**
-     * Initialize datas
-     * @access protected
-     * @return AbstractItem
-     */
-    protected function initialize()
-    {
-        // call parent method
-        parent::initialize();
-
-        // initialize specific datas
-        $this->_released    = '';
-        $this->_artists     = array();
-        $this->_tracks      = array();
-        $this->_externalIds = array();
-        $this->_territories  = array();
-    }
+    protected $_territories;
 
     /**
      * Set principal album artist

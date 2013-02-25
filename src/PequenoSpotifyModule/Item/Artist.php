@@ -23,21 +23,7 @@ class Artist extends AbstractItem
 {
 
     /** @var Album[] */
-    protected $_albums = null;
-
-    /**
-     * Initialize datas
-     * @access protected
-     * @return AbstractItem
-     */
-    protected function initialize()
-    {
-        // call parent method
-        parent::initialize();
-
-        // initialize specific datas
-        $this->_albums = array();
-    }
+    protected $_albums;
 
     /**
      * Set artist albums

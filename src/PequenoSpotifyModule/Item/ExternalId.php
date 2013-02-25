@@ -23,10 +23,10 @@ class ExternalId
 {
 
     /** @var string */
-    protected $_id = null;
+    protected $_id;
 
     /** @var string */
-    protected $_type = null;
+    protected $_type;
 
     /**
      * Class constructor
@@ -35,20 +35,6 @@ class ExternalId
      */
     public function __construct()
     {
-        // initialize datas
-        $this->initialize();
-    }
-
-    /**
-     * Initialize datas
-     * @access protected
-     * @return ExternalId
-     */
-    protected function initialize()
-    {
-        // initialize datas
-        $this->_id      = '';
-        $this->_type    = '';
     }
 
     /**

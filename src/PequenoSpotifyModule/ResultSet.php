@@ -59,34 +59,11 @@ class ResultSet implements \Iterator, \Countable
      */
     public function __construct($rawResults)
     {
-        // initialize datas
-        $this->initialize();
-
         // extract search informations
         $this->extractSearchInfos($rawResults);
 
         // extract search results
         $this->extractSearchResults($rawResults);
-    }
-
-    /**
-     * Initialize datas
-     * @access protected
-     * @return ResultSet
-     */
-    protected function initialize()
-    {
-        // initialize datas
-        $this->_numResults 	= 0;
-        $this->_numPage		= 0;
-        $this->_limit 		= 0;
-        $this->_offset 		= 0;
-        $this->_query		= '';
-        $this->_type		= '';
-        $this->_results	    = array();
-
-        // return ResultSet
-        return $this;
     }
 
     /**
