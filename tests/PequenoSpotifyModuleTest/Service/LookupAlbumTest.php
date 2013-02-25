@@ -44,8 +44,10 @@ class LookupAlbumTest extends TestCase
 	    $this->assertNotEmpty($album->getExternalIds());
 
         // external ids assertions
-        $this->assertSame('634904012922', reset($album->getExternalIds())->getId());
-        $this->assertSame('upc', reset($album->getExternalIds())->getType());
+	    /** @var \PequenoSpotifyModule\Item\ExternalId $externalId  */
+	    $externalId = reset($album->getExternalIds());
+	    $this->assertSame('634904012922', $externalId->getId());
+        $this->assertSame('upc', $externalId->getType());
 
         // tracks assertions
 	    $this->assertEmpty($album->getTracks());
@@ -67,8 +69,10 @@ class LookupAlbumTest extends TestCase
 	    $this->assertNotEmpty($album->getExternalIds());
 
         // external ids assertions
-        $this->assertSame('634904012922', reset($album->getExternalIds())->getId());
-        $this->assertSame('upc', reset($album->getExternalIds())->getType());
+	    /** @var \PequenoSpotifyModule\Item\ExternalId $externalId  */
+	    $externalId = reset($album->getExternalIds());
+	    $this->assertSame('634904012922', $externalId->getId());
+	    $this->assertSame('upc', $externalId->getType());
 
         // tracks assertions
 	    $this->assertNotEmpty($album->getTracks());
@@ -105,8 +109,10 @@ class LookupAlbumTest extends TestCase
 	    $this->assertNotEmpty($album->getExternalIds());
 
         // external ids assertions
-        $this->assertSame('634904012922', reset($album->getExternalIds())->getId());
-        $this->assertSame('upc', reset($album->getExternalIds())->getType());
+	    /** @var \PequenoSpotifyModule\Item\ExternalId $externalId  */
+	    $externalId = reset($album->getExternalIds());
+	    $this->assertSame('634904012922', $externalId->getId());
+	    $this->assertSame('upc', $externalId->getType());
 
         // tracks assertions
 	    $this->assertNotEmpty($album->getTracks());
