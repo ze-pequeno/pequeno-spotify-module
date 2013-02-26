@@ -30,6 +30,7 @@ class LookupAlbumTest extends TestCase
 
     public function testWillRetriveAlbumWithBasicDetails()
     {
+        // retrieve album from Spotify URI
         $album = $this->getSpotifyService()->lookupAlbum(self::ALBUM_URI, 'basic');
 
         // album assertions
@@ -57,6 +58,7 @@ class LookupAlbumTest extends TestCase
 
     public function testWillRetriveAlbumWithMeduimDetails()
     {
+        // retrieve album from Spotify URI
         $album = $this->getSpotifyService()->lookupAlbum(self::ALBUM_URI, 'track');
 
         // album assertions
@@ -83,6 +85,7 @@ class LookupAlbumTest extends TestCase
         $tracks = $album->getTracks();
         /** @var \PequenoSpotifyModule\Item\Track $track  */
         $track = reset($tracks);
+        $this->assertInstanceOf('PequenoSpotifyModule\Item\Track', $track);
         $this->assertSame('spotify:track:3zBhJBEbDD4a4SO1EaEiBP', $track->getUri());
         $this->assertSame('Rendez-vu', $track->getName());
         $this->assertSame(0, $track->getTrackNumber());
@@ -95,12 +98,14 @@ class LookupAlbumTest extends TestCase
         $trackArtists = $track->getArtists();
         /** @var \PequenoSpotifyModule\Item\Artist $trackArtist  */
         $trackArtist = reset($trackArtists);
+        $this->assertInstanceOf('PequenoSpotifyModule\Item\Artist', $trackArtist);
         $this->assertSame('spotify:artist:4YrKBkKSVeqDamzBPWVnSJ', $trackArtist->getUri());
         $this->assertSame('Basement Jaxx', $trackArtist->getName());
     }
 
     public function testWillRetriveAlbumWithFullDetails()
     {
+        // retrieve album from Spotify URI
         $album = $this->getSpotifyService()->lookupAlbum(self::ALBUM_URI, 'trackdetail');
 
         // album assertions
@@ -127,6 +132,7 @@ class LookupAlbumTest extends TestCase
         $tracks = $album->getTracks();
         /** @var \PequenoSpotifyModule\Item\Track $track  */
         $track = reset($tracks);
+        $this->assertInstanceOf('PequenoSpotifyModule\Item\Track', $track);
         $this->assertSame('spotify:track:3zBhJBEbDD4a4SO1EaEiBP', $track->getUri());
         $this->assertSame('Rendez-vu', $track->getName());
         $this->assertSame(1, $track->getTrackNumber());
@@ -139,6 +145,7 @@ class LookupAlbumTest extends TestCase
         $trackArtists = $track->getArtists();
         /** @var \PequenoSpotifyModule\Item\Artist $trackArtist  */
         $trackArtist = reset($trackArtists);
+        $this->assertInstanceOf('PequenoSpotifyModule\Item\Artist', $trackArtist);
         $this->assertSame('spotify:artist:4YrKBkKSVeqDamzBPWVnSJ', $trackArtist->getUri());
         $this->assertSame('Basement Jaxx', $trackArtist->getName());
     }
