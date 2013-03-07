@@ -99,8 +99,11 @@ class Artist extends AbstractItem
             // iterate albums
             foreach ($artist->albums as $album) {
 
-                // create Album and store on container
-                $albums[] = Album::extractInfos($album);
+	            // create album item
+	            $album = Album::extractInfos($album->album);
+
+                // set Artist and store on container
+                $albums[] = $album->setArtist($artistItem);
             }
 
             // set albums of artist
