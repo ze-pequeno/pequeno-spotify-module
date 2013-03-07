@@ -10,6 +10,7 @@ return array(
     ),
     'factories' => array(
         'pequeno.services.spotify' => function($sm) {
+	        // return new SpotifyService instance
             return new \PequenoSpotifyModule\Service\SpotifyService();
         },
     ),
