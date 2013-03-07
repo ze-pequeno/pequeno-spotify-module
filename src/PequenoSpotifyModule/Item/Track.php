@@ -40,6 +40,9 @@ class Track extends AbstractItem
     /** @var ExternalId[] */
     protected $_externalIds;
 
+	/** @var string[] */
+	protected $_territories;
+
     /**
      * Set track length
      * @access public
@@ -114,6 +117,31 @@ class Track extends AbstractItem
         // return track number
         return (int) $this->_trackNumber;
     }
+
+	/**
+	 * Set album territories availability
+	 * @access public
+	 * @param  string[] $territories Album territories availability
+	 * @return Album
+	 */
+	public function setTerritories($territories)
+	{
+		// store territories availability and return self
+		$this->_territories = (array) $territories;
+
+		return $this;
+	}
+
+	/**
+	 * Get album territories availability
+	 * @access public
+	 * @return string[]
+	 */
+	public function getTerritories()
+	{
+		// return territories availability
+		return (array) $this->_territories;
+	}
 
     /**
      * Set artists of track
@@ -274,6 +302,13 @@ class Track extends AbstractItem
             // set external ids of track
             $trackItem->setExternalIds($externalIds);
         }
+
+	    // is teritories availabality available ?
+	    if (isset($track->availability) && isset($track->availability->territories)) {
+
+		    // update territories availability
+		    $trackItem->setTerritories(explode(' ', $track->availability->territories));
+	    }
 
         // on retourne l'instance de la piste
         return $trackItem;
