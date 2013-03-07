@@ -15,7 +15,7 @@ Installation of this module uses composer. For composer documentation, please re
 
 ```sh
 php composer.phar require ze-pequeno/pequeno-spotify-module
-# (When asked for a version, type `0.*`)
+# (When asked for a version, type `1.*`)
 ```
 
 Then add `PequenoSpotifyModule` to your `config/application.config.php`.
