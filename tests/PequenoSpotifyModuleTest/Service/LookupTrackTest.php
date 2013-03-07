@@ -37,35 +37,35 @@ class LookupTrackTest extends TestCase
         $this->assertInstanceOf('PequenoSpotifyModule\Item\Track', $track);
         $this->assertEquals(self::TRACK_URI, $track->getUri());
         $this->assertEquals('Rendez-vu', $track->getName());
-	    $this->assertGreaterThan(0.0, $track->getPopularity());
-	    $this->assertSame(346.158, $track->getLength());
-	    $this->assertSame(1, $track->getTrackNumber());
-	    $this->assertEmpty($track->getDiscNumber());
-	    $this->assertNotEmpty($track->getTerritories());
+        $this->assertGreaterThan(0.0, $track->getPopularity());
+        $this->assertSame(346.158, $track->getLength());
+        $this->assertSame(1, $track->getTrackNumber());
+        $this->assertEmpty($track->getDiscNumber());
+        $this->assertNotEmpty($track->getTerritories());
 
-	    // artist assertions
-	    $this->assertNotEmpty($track->getArtists());
-	    $artists = $track->getArtists();
-	    /** @var $artist \PequenoSpotifyModule\Item\Artist */
-	    $artist = reset($artists);
-	    $this->assertInstanceOf('PequenoSpotifyModule\Item\Artist', $artist);
-	    $this->assertSame('spotify:artist:4YrKBkKSVeqDamzBPWVnSJ', $artist->getUri());
-	    $this->assertSame('Basement Jaxx', $artist->getName());
+        // artist assertions
+        $this->assertNotEmpty($track->getArtists());
+        $artists = $track->getArtists();
+        /** @var $artist \PequenoSpotifyModule\Item\Artist */
+        $artist = reset($artists);
+        $this->assertInstanceOf('PequenoSpotifyModule\Item\Artist', $artist);
+        $this->assertSame('spotify:artist:4YrKBkKSVeqDamzBPWVnSJ', $artist->getUri());
+        $this->assertSame('Basement Jaxx', $artist->getName());
 
-	    // albums assertions
-	    $this->assertInstanceOf('PequenoSpotifyModule\Item\Album', $track->getAlbum());
-	    $this->assertEquals('spotify:album:6G9fHYDCoyEErUkHrFYfs4', $track->getAlbum()->getUri());
-	    $this->assertEquals('Remedy', $track->getAlbum()->getName());
-	    $this->assertEquals('1999', $track->getAlbum()->getReleased());
+        // albums assertions
+        $this->assertInstanceOf('PequenoSpotifyModule\Item\Album', $track->getAlbum());
+        $this->assertEquals('spotify:album:6G9fHYDCoyEErUkHrFYfs4', $track->getAlbum()->getUri());
+        $this->assertEquals('Remedy', $track->getAlbum()->getName());
+        $this->assertEquals('1999', $track->getAlbum()->getReleased());
 
-	    // track external ids assertions
-	    $this->assertNotEmpty($track->getExternalIds());
-	    $externalIds = $track->getExternalIds();
-	    /** @var $externalId \PequenoSpotifyModule\Item\ExternalId */
-	    $externalId = reset($externalIds);
-	    $this->assertInstanceOf('PequenoSpotifyModule\Item\ExternalId', $externalId);
-	    $this->assertSame('GBBKS9900090', $externalId->getId());
-	    $this->assertSame('isrc', $externalId->getType());
+        // track external ids assertions
+        $this->assertNotEmpty($track->getExternalIds());
+        $externalIds = $track->getExternalIds();
+        /** @var $externalId \PequenoSpotifyModule\Item\ExternalId */
+        $externalId = reset($externalIds);
+        $this->assertInstanceOf('PequenoSpotifyModule\Item\ExternalId', $externalId);
+        $this->assertSame('GBBKS9900090', $externalId->getId());
+        $this->assertSame('isrc', $externalId->getType());
     }
 
 }

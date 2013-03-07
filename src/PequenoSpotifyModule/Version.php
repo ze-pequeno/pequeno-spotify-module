@@ -22,19 +22,19 @@ namespace PequenoSpotifyModule;
 class Version
 {
 
-	/** @var string */
+    /** @var string */
     const VERSION = '1.0.0';
 
-	/**
-	 * Get version number
-	 * @access public
-	 * @static
-	 * @return string
-	 */
-	public static function getVersion()
-	{
-		// return version as string
-		return self::VERSION;
-	}
+    /**
+     * Get version number
+     * @access public
+     * @static
+     * @return string
+     */
+    public static function getVersion()
+    {
+        // return version as string
+        return self::VERSION;
+    }
 
 }

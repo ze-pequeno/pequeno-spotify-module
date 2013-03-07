@@ -137,8 +137,8 @@ class LookupAlbumTest extends TestCase
         $this->assertSame('Rendez-vu', $track->getName());
         $this->assertSame(1, $track->getTrackNumber());
         $this->assertSame(1, $track->getDiscNumber());
-	    $this->assertGreaterThan(0.0, $track->getLength());
-	    $this->assertGreaterThan(0.0, $track->getPopularity());
+        $this->assertGreaterThan(0.0, $track->getLength());
+        $this->assertGreaterThan(0.0, $track->getPopularity());
 
         // track artists assertions
         $this->assertNotEmpty($track->getArtists());
