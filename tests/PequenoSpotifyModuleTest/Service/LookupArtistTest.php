@@ -107,7 +107,7 @@ class LookupArtistTest extends TestCase
 	    $this->assertInstanceOf('PequenoSpotifyModule\Item\ExternalId', $externalId);
 	    $this->assertSame('5051083056144', $externalId->getId());
 	    $this->assertSame('upc', $externalId->getType());
-	    
+
 	    // album artist assertions
 	    $this->assertSame($artist, $album->getArtist());
 	    $this->assertEquals('spotify:artist:4YrKBkKSVeqDamzBPWVnSJ', $album->getArtist()->getUri());
