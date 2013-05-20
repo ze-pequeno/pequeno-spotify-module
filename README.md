@@ -8,6 +8,14 @@ PequenoSpotifyModule integrates Spotify Web API with Zend Framework 2 quickly an
   - Search service support
   - Lookup service support
 
+## Release Information
+
+Pequeno Spotify Module 1.0.2
+
+This is the second maintenance release for the version 1.0 series.
+
+20 May 2013
+
 ## Installation
 
 Installation of this module uses composer. For composer documentation, please refer to
@@ -23,7 +31,7 @@ Then add `PequenoSpotifyModule` to your `config/application.config.php`.
 Installation without composer is not officially supported and requires you to manually install all dependencies
 that are listed in `composer.json`
 
-## Registered Service names
+## Registered Service Names
 
  * `pequeno.services.spotify`: a `PequenoSpotifyModule\Service\SpotifyService` instance
  * `Pequeno\Service\SpotifyService`: an alias of `pequeno.services.spotify`
