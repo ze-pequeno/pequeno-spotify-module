@@ -19,10 +19,3 @@ before_script:
 script:
   - cd vendor/ze-pequeno/pequeno-spotify-module/tests
   - phpunit
-
-notifications:
-  email:
-    recipients:
-      - cyril.martin.cm@gmail.com
-    on_success: always
-    on_failure: always
