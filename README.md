@@ -14,7 +14,7 @@ Pequeno Spotify Module 1.0.3
 
 This is the third maintenance release for the version 1.0 series.
 
-20 May 2013
+08 June 2013
 
 ## Installation
 
