@@ -19,3 +19,8 @@ before_script:
 script:
   - cd vendor/ze-pequeno/pequeno-spotify-module/tests
   - phpunit
+
+notifications:
+  email:
+    on_success: always
+    on_failure: always
