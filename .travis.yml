@@ -9,12 +9,12 @@ before_script:
   - cd ..
   - git clone git://github.com/zendframework/ZendSkeletonApplication.git
   - cd ZendSkeletonApplication
-  - cp ../PequenoSpotifyModule/.travis/composer.json ./
+  - cp ../pequeno-spotify-module/.travis/composer.json ./
   - curl -s http://getcomposer.org/installer | php
   - php composer.phar install
   - rm -rf vendor/ze-pequeno/pequeno-spotify-module
-  - cp -r ../PequenoSpotifyModule vendor/ze-pequeno/pequeno-spotify-module
-  - rm config/application.config.php && cp ../PequenoSpotifyModule/.travis/application.config.php config/
+  - cp -r ../pequeno-spotify-module vendor/ze-pequeno/pequeno-spotify-module
+  - rm config/application.config.php && cp ../pequeno-spotify-module/.travis/application.config.php config/
 
 script:
   - cd vendor/ze-pequeno/pequeno-spotify-module/tests
