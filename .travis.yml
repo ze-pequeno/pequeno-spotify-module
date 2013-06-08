@@ -22,5 +22,7 @@ script:
 
 notifications:
   email:
+    recipients:
+      - cyril.martin.cm@gmail.com
     on_success: always
     on_failure: always
