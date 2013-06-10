@@ -6,16 +6,8 @@ php:
   - 5.4
 
 before_script:
-  - cd ..
-  - git clone git://github.com/zendframework/ZendSkeletonApplication.git
-  - cd ZendSkeletonApplication
-  - cp ../pequeno-spotify-module/.travis/composer.json ./
   - curl -s http://getcomposer.org/installer | php
   - php composer.phar install
-  - rm -rf vendor/ze-pequeno/pequeno-spotify-module
-  - cp -r ../pequeno-spotify-module vendor/ze-pequeno/pequeno-spotify-module
-  - rm config/application.config.php && cp ../pequeno-spotify-module/.travis/application.config.php config/
 
 script:
-  - cd vendor/ze-pequeno/pequeno-spotify-module/tests
-  - phpunit
+  - ./vendor/bin/phpunit -c ./tests/phpunit.xml
