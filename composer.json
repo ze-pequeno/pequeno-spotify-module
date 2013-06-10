@@ -20,10 +20,13 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=5.3.3",
-	    "zendframework/zend-http": "2.*"
+	    "zendframework/zend-http": "2.*",
+	    "zendframework/zend-mvc": "2.*",
+	    "zendframework/zend-serializer": "2.*",
+	    "zendframework/zend-servicemanager": "2.*",
+	    "zendframework/zend-version": "2.*"
     },
 	"require-dev": {
-		"zendframework/zftool": "dev-master",
 		"phpunit/phpunit": "3.7.*"
 	},
     "autoload": {
