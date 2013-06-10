@@ -23,7 +23,7 @@ class Version
 {
 
     /** @var string */
-    const VERSION = '1.0.4dev';
+    const VERSION = '1.0.4';
 
     /**
      * Get version number
