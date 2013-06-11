@@ -10,4 +10,9 @@ before_script:
   - php composer.phar install
 
 script:
-  - ./vendor/bin/phpunit -c ./tests/phpunit.xml
+  - ./vendor/bin/phpunit -c ./phpunit.xml --coverage-clover ./build/logs/clover.xml --exclude-group Performance
+  - ./vendor/bin/phpunit --group=Functional
+  - ./vendor/bin/phpcs --standard=PSR2 ./src/ ./tests/
+
+after_script:
+  - php vendor/bin/coveralls -v
