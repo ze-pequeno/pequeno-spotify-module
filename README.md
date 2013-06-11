@@ -1,4 +1,4 @@
-# Zend Framework 2 Module for Spotify Web API
+# Module for Spotify Web API
 ====================
 
 [![Build Status](https://travis-ci.org/ze-pequeno/pequeno-spotify-module.png?branch=master)](https://travis-ci.org/ze-pequeno/pequeno-spotify-module) [![Coverage Status](https://coveralls.io/repos/ze-pequeno/pequeno-spotify-module/badge.png?branch=master)](https://coveralls.io/r/ze-pequeno/pequeno-spotify-module?branch=master)
