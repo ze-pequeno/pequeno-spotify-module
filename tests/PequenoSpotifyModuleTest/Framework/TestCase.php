@@ -20,10 +20,10 @@
 namespace PequenoSpotifyModuleTest\Framework;
 
 // set used namespaces
-use PequenoSpotifyModule\Service\SpotifyService,
-    PequenoSpotifyModuleTest\Utils\ServiceManagerFactory,
-    PHPUnit_Framework_TestCase,
-    Zend\ServiceManager\ServiceManager;
+use PequenoSpotifyModule\Service\SpotifyService;
+use PequenoSpotifyModuleTest\Utils\ServiceManagerFactory;
+use PHPUnit_Framework_TestCase;
+use Zend\ServiceManager\ServiceManager;
 
 class TestCase extends PHPUnit_Framework_TestCase
 {
@@ -69,5 +69,4 @@ class TestCase extends PHPUnit_Framework_TestCase
         // return SpotifyService instance
         return $this->spotify;
     }
-
 }

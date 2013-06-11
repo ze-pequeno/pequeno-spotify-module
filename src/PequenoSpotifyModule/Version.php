@@ -36,5 +36,4 @@ class Version
         // return version as string
         return self::VERSION;
     }
-
 }

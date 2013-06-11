@@ -20,12 +20,13 @@
 namespace PequenoSpotifyModule\Service;
 
 // set used namespaces
-use PequenoSpotifyModule\Item as SpotifyItem,
-    PequenoSpotifyModule\ResultSet,
-    Zend\Http\Client as HttpClient,
-    Zend\Http\Header\ContentType as ContentTypeHeader,
-    Zend\Http\Request as HttpRequest,
-    Zend\Http\Response as HttpResponse;
+use PequenoSpotifyModule\Item as SpotifyItem;
+use PequenoSpotifyModule\ResultSet;
+use Zend\Http\Exception\RuntimeException as ZendRuntimeException;
+use Zend\Http\Client as HttpClient;
+use Zend\Http\Header\ContentType as ContentTypeHeader;
+use Zend\Http\Request as HttpRequest;
+use Zend\Http\Response as HttpResponse;
 
 class SpotifyService
 {
@@ -210,21 +211,22 @@ class SpotifyService
         $extrasParam = strtolower($detail);
         switch ($extrasParam) {
             case 'track':
-            case 'trackdetail': {
+            case 'trackdetail':
                 break;
-            }
             case 'basic':
-            default: {
+            default:
                 $extrasParam = '';
                 break;
-            }
         }
 
-        // lookup album from Spotify
-        $rawResult = $this->send(self::LOOKUP_SERVIVE, '', array(
+        // setup service parameters
+        $parameters = array(
             self::PARAM_URI     => $this->generateUriParameter($uri, self::LOOKUP_ALBUM),
             self::PARAM_EXTRA   => $extrasParam
-        ));
+        );
+
+        // lookup album from Spotify
+        $rawResult = $this->send(self::LOOKUP_SERVIVE, '', $parameters);
 
         // return SpotifyItem\Album instance
         return SpotifyItem\Album::extractInfos($rawResult->album);
@@ -243,21 +245,22 @@ class SpotifyService
         $extrasParam = strtolower($detail);
         switch ($extrasParam) {
             case 'album':
-            case 'albumdetail': {
+            case 'albumdetail':
                 break;
-            }
             case 'basic':
-            default: {
+            default:
                 $extrasParam = '';
                 break;
-            }
         }
 
-        // lookup artist from Spotify
-        $rawResult = $this->send(self::LOOKUP_SERVIVE, '', array(
+        // setup parameters
+        $parameters = array(
             self::PARAM_URI     => $this->generateUriParameter($uri, self::LOOKUP_ARTIST),
             self::PARAM_EXTRA   => $extrasParam
-        ));
+        );
+
+        // lookup artist from Spotify
+        $rawResult = $this->send(self::LOOKUP_SERVIVE, '', $parameters);
 
         // return SpotifyItem\Artist instance
         return SpotifyItem\Artist::extractInfos($rawResult->artist);
@@ -271,10 +274,13 @@ class SpotifyService
      */
     public function lookupTrack($uri)
     {
-        // lookup track from Spotify
-        $rawResult = $this->send(self::LOOKUP_SERVIVE, '', array(
+        // setup parameters
+        $parameters = array(
             self::PARAM_URI     => $this->generateUriParameter($uri, self::LOOKUP_TRACK)
-        ));
+        );
+
+        // lookup track from Spotify
+        $rawResult = $this->send(self::LOOKUP_SERVIVE, '', $parameters);
 
         // return SpotifyItem\Track instance
         return SpotifyItem\Track::extractInfos($rawResult->track);
@@ -289,11 +295,14 @@ class SpotifyService
      */
     public function searchAlbum($album, $page = 1)
     {
-        // search album from Spotify
-        $rawResult = $this->send(self::SEARCH_SERVICE, self::SEARCH_ALBUM, array(
+        // setup parameters
+        $parameters = array(
             self::PARAM_QUERY   => $this->generateQueryParameter($album),
             self::PARAM_PAGE    => $this->generatePageParameter($page)
-        ));
+        );
+
+        // search album from Spotify
+        $rawResult = $this->send(self::SEARCH_SERVICE, self::SEARCH_ALBUM, $parameters);
 
         // return ResultSet
         return new ResultSet($rawResult);
@@ -308,11 +317,14 @@ class SpotifyService
      */
     public function searchArtist($artist, $page = 1)
     {
-        // search artist from Spotify
-        $rawResult = $this->send(self::SEARCH_SERVICE, self::SEARCH_ARTIST, array(
+        // setup parameters
+        $parameters = array(
             self::PARAM_QUERY   => $this->generateQueryParameter($artist),
             self::PARAM_PAGE    => $this->generatePageParameter($page)
-        ));
+        );
+
+        // search artist from Spotify
+        $rawResult = $this->send(self::SEARCH_SERVICE, self::SEARCH_ARTIST, $parameters);
 
         // return ResultSet
         return new ResultSet($rawResult);
@@ -327,11 +339,14 @@ class SpotifyService
      */
     public function searchTrack($track, $page = 1)
     {
-        // search artist from Spotify
-        $rawResult = $this->send(self::SEARCH_SERVICE, self::SEARCH_TRACK, array(
+        // setup parameters
+        $parameters = array(
             self::PARAM_QUERY   => $this->generateQueryParameter($track),
             self::PARAM_PAGE    => $this->generatePageParameter($page)
-        ));
+        );
+
+        // search artist from Spotify
+        $rawResult = $this->send(self::SEARCH_SERVICE, self::SEARCH_TRACK, $parameters);
 
         // return ResultSet
         return new ResultSet($rawResult);
@@ -351,12 +366,13 @@ class SpotifyService
         // reset old parameters
         $this->getHttpClient()->resetParameters();
 
+        // setup Http headers
+        $headers = array(ContentTypeHeader::fromString('Content-Type: '.HttpClient::ENC_URLENCODED));
+
         // setup HttpClient
         $this->getHttpClient()->setMethod(HttpRequest::METHOD_GET);
         $this->getHttpClient()->setParameterGet($parameters);
-        $this->getHttpClient()->setHeaders(array(
-            ContentTypeHeader::fromString('Content-Type: '.HttpClient::ENC_URLENCODED)
-        ));
+        $this->getHttpClient()->setHeaders($headers);
 
         // generate URI and set to HttpClient
         $this->getHttpClient()->setUri($this->generateURI($service, $type));
@@ -368,7 +384,7 @@ class SpotifyService
         if (!$this->response->isOk()) {
 
             // throw RuntimeException
-            throw new \Zend\Http\Exception\RuntimeException('Invalid request. Status code: '.$this->response->getStatusCode());
+            throw new ZendRuntimeException(sprintf('Invalid status code: %d', $this->response->getStatusCode()));
         }
 
         // return decode object
@@ -440,5 +456,4 @@ class SpotifyService
         // return URI
         return $uri;
     }
-
 }

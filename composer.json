@@ -33,8 +33,7 @@
 	},
     "autoload": {
         "psr-0": {
-            "PequenoSpotifyModule": "src/",
-            "PequenoSpotifyModuleTest": "tests/"
+            "PequenoSpotifyModule": "src/"
         },
         "classmap": [
             "./Module.php"

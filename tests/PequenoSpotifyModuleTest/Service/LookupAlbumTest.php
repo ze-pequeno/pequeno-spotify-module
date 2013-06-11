@@ -149,5 +149,4 @@ class LookupAlbumTest extends TestCase
         $this->assertSame('spotify:artist:4YrKBkKSVeqDamzBPWVnSJ', $trackArtist->getUri());
         $this->assertSame('Basement Jaxx', $trackArtist->getName());
     }
-
 }

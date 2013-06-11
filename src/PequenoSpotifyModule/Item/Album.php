@@ -23,22 +23,22 @@ class Album extends AbstractItem
 {
 
     /** @var string */
-    protected $_released;
+    protected $released;
 
     /** @var Track[] */
-    protected $_tracks;
+    protected $tracks;
 
     /** @var Artist[] */
-    protected $_artists;
+    protected $artists;
 
     /** @var Artist */
-    protected $_artist;
+    protected $artist;
 
     /** @var ExternalId[] */
-    protected $_externalIds;
+    protected $externalIds;
 
     /** @var string[] */
-    protected $_territories;
+    protected $territories;
 
     /**
      * Set principal album artist
@@ -49,7 +49,7 @@ class Album extends AbstractItem
     public function setArtist($artist)
     {
         // store artist and return self
-        $this->_artist = $artist;
+        $this->artist = $artist;
 
         return $this;
     }
@@ -62,7 +62,7 @@ class Album extends AbstractItem
     public function getArtist()
     {
         // return artists
-        return $this->_artist;
+        return $this->artist;
     }
 
     /**
@@ -74,7 +74,7 @@ class Album extends AbstractItem
     public function setArtists($artists)
     {
         // store artists and return self
-        $this->_artists = (array) $artists;
+        $this->artists = (array) $artists;
 
         return $this;
     }
@@ -87,7 +87,7 @@ class Album extends AbstractItem
     public function getArtists()
     {
         // return artists
-        return (array) $this->_artists;
+        return (array) $this->artists;
     }
 
     /**
@@ -99,7 +99,7 @@ class Album extends AbstractItem
     public function setTracks($tracks)
     {
         // store tracks and return self
-        $this->_tracks = (array) $tracks;
+        $this->tracks = (array) $tracks;
 
         return $this;
     }
@@ -112,7 +112,7 @@ class Album extends AbstractItem
     public function getTracks()
     {
         // return tracks
-        return (array) $this->_tracks;
+        return (array) $this->tracks;
     }
 
     /**
@@ -124,7 +124,7 @@ class Album extends AbstractItem
     public function setTerritories($territories)
     {
         // store territories availability and return self
-        $this->_territories = (array) $territories;
+        $this->territories = (array) $territories;
 
         return $this;
     }
@@ -137,7 +137,7 @@ class Album extends AbstractItem
     public function getTerritories()
     {
         // return territories availability
-        return (array) $this->_territories;
+        return (array) $this->territories;
     }
 
     /**
@@ -149,7 +149,7 @@ class Album extends AbstractItem
     public function setExternalIds($externalIds)
     {
         // store ExternalIds and return self
-        $this->_externalIds = (array) $externalIds;
+        $this->externalIds = (array) $externalIds;
 
         return $this;
     }
@@ -162,7 +162,7 @@ class Album extends AbstractItem
     public function getExternalIds()
     {
         // return ExternalIds
-        return (array) $this->_externalIds;
+        return (array) $this->externalIds;
     }
 
     /**
@@ -174,7 +174,7 @@ class Album extends AbstractItem
     public function setReleased($released)
     {
         // store released date and return self
-        $this->_released = (string) $released;
+        $this->released = (string) $released;
 
         return $this;
     }
@@ -187,7 +187,7 @@ class Album extends AbstractItem
     public function getReleased()
     {
         // return album released date
-        return (string) $this->_released;
+        return (string) $this->released;
     }
 
     /**
@@ -242,9 +242,10 @@ class Album extends AbstractItem
 
             // set artists of album
             $albumItem->setArtists($artists);
+        }
 
         // is artists available (from lookup service) ?
-        } elseif (isset($album->{'artist-id'}) && isset($album->artist)) {
+        if (isset($album->{'artist-id'}) && isset($album->artist)) {
 
             // create and store principal artist
             $albumItem->setArtist(Artist::build($album->{'artist-id'}, $album->artist));
@@ -287,5 +288,4 @@ class Album extends AbstractItem
         // return album instance
         return $albumItem;
     }
-
 }

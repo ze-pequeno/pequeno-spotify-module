@@ -23,13 +23,13 @@ abstract class AbstractItem
 {
 
     /** @var string */
-    protected $_uri;
+    protected $uri;
 
     /** @var string */
-    protected $_name;
+    protected $name;
 
     /** @var float */
-    protected $_popularity;
+    protected $popularity;
 
     /**
      * Class constructor
@@ -49,7 +49,7 @@ abstract class AbstractItem
     public function setName($name)
     {
         // store item name and return self
-        $this->_name = (string) $name;
+        $this->name = (string) $name;
 
         return $this;
     }
@@ -62,7 +62,7 @@ abstract class AbstractItem
     public function getName()
     {
         // return item name
-        return (string) $this->_name;
+        return (string) $this->name;
     }
 
     /**
@@ -74,7 +74,7 @@ abstract class AbstractItem
     public function setPopularity($popularity)
     {
         // store popularity and return self
-        $this->_popularity = (float) $popularity;
+        $this->popularity = (float) $popularity;
 
         return $this;
     }
@@ -87,7 +87,7 @@ abstract class AbstractItem
     public function getPopularity()
     {
         // return item popularity
-        return (float) $this->_popularity;
+        return (float) $this->popularity;
     }
 
     /**
@@ -99,7 +99,7 @@ abstract class AbstractItem
     public function setUri($uri)
     {
         // store item URI and return self
-        $this->_uri = (string) $uri;
+        $this->uri = (string) $uri;
 
         return $this;
     }
@@ -111,7 +111,6 @@ abstract class AbstractItem
      */
     public function getUri()
     {
-        return (string) $this->_uri;
+        return (string) $this->uri;
     }
-
 }

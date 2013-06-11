@@ -23,10 +23,10 @@ class ExternalId
 {
 
     /** @var string */
-    protected $_id;
+    protected $id;
 
     /** @var string */
-    protected $_type;
+    protected $type;
 
     /**
      * Class constructor
@@ -46,7 +46,7 @@ class ExternalId
     public function setId($id)
     {
         // store identifier and return self
-        $this->_id = (string) $id;
+        $this->id = (string) $id;
 
         return $this;
     }
@@ -59,7 +59,7 @@ class ExternalId
     public function getId()
     {
         // return ExternalId identifier
-        return (string) $this->_id;
+        return (string) $this->id;
     }
 
     /**
@@ -71,7 +71,7 @@ class ExternalId
     public function setType($type)
     {
         // store type and return self
-        $this->_type = (string) $type;
+        $this->type = (string) $type;
 
         return $this;
     }
@@ -84,7 +84,7 @@ class ExternalId
     public function getType()
     {
         // return ExternalId type
-        return (string) $this->_type;
+        return (string) $this->type;
     }
 
     /**
@@ -106,5 +106,4 @@ class ExternalId
         // return instance
         return $externalIdItem;
     }
-
 }

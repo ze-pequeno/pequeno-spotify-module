@@ -20,36 +20,35 @@
 namespace PequenoSpotifyModule;
 
 // set used namespaces
-use PequenoSpotifyModule\Service\SpotifyService,
-    PequenoSpotifyModule\Item\AbstractItem,
-    PequenoSpotifyModule\Item\Album,
-    PequenoSpotifyModule\Item\Artist,
-    PequenoSpotifyModule\Item\ExternalId,
-    PequenoSpotifyModule\Item\Track;
+use PequenoSpotifyModule\Service\SpotifyService;
+use PequenoSpotifyModule\Item\AbstractItem;
+use PequenoSpotifyModule\Item\Album;
+use PequenoSpotifyModule\Item\Artist;
+use PequenoSpotifyModule\Item\Track;
 
 class ResultSet implements \Iterator, \Countable
 {
 
     /** @var int */
-    protected $_numResults = null;
+    protected $numResults = null;
 
     /** @var int */
-    protected $_limit = null;
+    protected $limit = null;
 
     /** @var int */
-    protected $_offset = null;
+    protected $offset = null;
 
     /** @var string */
-    protected $_query = null;
+    protected $query = null;
 
     /** @var string */
-    protected $_type = null;
+    protected $type = null;
 
     /** @var int */
-    protected $_numPage = null;
+    protected $numPage = null;
 
     /** @var AbstractItem[] */
-    protected $_results = null;
+    protected $results = null;
 
     /**
      * Class contructor
@@ -74,7 +73,7 @@ class ResultSet implements \Iterator, \Countable
     public function getSizeOfResults()
     {
         // return result total count
-        return $this->_numResults;
+        return $this->numResults;
     }
 
     /**
@@ -83,20 +82,24 @@ class ResultSet implements \Iterator, \Countable
      * @param  AbstractItem   $item item to add at search results
      * @return AbstractItem[]
      */
-    private function _addSearchResult($item)
+    private function addSearchResult($item)
     {
         // create container if necessary
-        if (!is_array($this->_results)) $this->_results = array();
+        if (!is_array($this->results)) {
+
+            // create result container
+            $this->results = array();
+        }
 
         // check we have an AbstractItem instance
         if ($item instanceof AbstractItem) {
 
             // add item to container
-            $this->_results[] = $item;
+            $this->results[] = $item;
         }
 
         // return container
-        return $this->_results;
+        return $this->results;
     }
 
     /**
@@ -111,12 +114,12 @@ class ResultSet implements \Iterator, \Countable
         if (isset($rawResults->info)) {
 
             // get search informations
-            $this->_numResults 	= (int) $rawResults->info->num_results;
-            $this->_numPage		= (int) $rawResults->info->page;
-            $this->_limit 		= (int) $rawResults->info->limit;
-            $this->_offset 		= (int) $rawResults->info->offset;
-            $this->_query		= (string) $rawResults->info->query;
-            $this->_type		= (string) $rawResults->info->type;
+            $this->numResults 	= (int) $rawResults->info->num_results;
+            $this->numPage		= (int) $rawResults->info->page;
+            $this->limit 		= (int) $rawResults->info->limit;
+            $this->offset 		= (int) $rawResults->info->offset;
+            $this->query		= (string) $rawResults->info->query;
+            $this->type		= (string) $rawResults->info->type;
         }
 
         // return ResultSet
@@ -131,22 +134,19 @@ class ResultSet implements \Iterator, \Countable
      */
     protected function extractSearchResults($rawResults)
     {
-        switch ($this->_type) {
+        switch ($this->type) {
             // albums search
-            case SpotifyService::SEARCH_ALBUM: {
+            case SpotifyService::SEARCH_ALBUM:
                 $this->extractAlbums($rawResults);
                 break;
-            }
             // artists search
-            case SpotifyService::SEARCH_ARTIST: {
+            case SpotifyService::SEARCH_ARTIST:
                 $this->extractArtists($rawResults);
                 break;
-            }
             // tracks search
-            case SpotifyService::SEARCH_TRACK: {
+            case SpotifyService::SEARCH_TRACK:
                 $this->extractTracks($rawResults);
                 break;
-            }
         }
 
         // return ResultSet
@@ -162,7 +162,7 @@ class ResultSet implements \Iterator, \Countable
     protected function extractAlbums($rawResults)
     {
         // are albums available ?
-        if (isset($rawResults->albums) AND is_array($rawResults->albums)) {
+        if (isset($rawResults->albums) && is_array($rawResults->albums)) {
 
             // iterate albums
             foreach ($rawResults->albums as $album) {
@@ -171,7 +171,7 @@ class ResultSet implements \Iterator, \Countable
                 $albumItem = Album::extractInfos($album);
 
                 // store search result
-                $this->_addSearchResult($albumItem);
+                $this->addSearchResult($albumItem);
             }
         }
 
@@ -188,7 +188,7 @@ class ResultSet implements \Iterator, \Countable
     protected function extractArtists($rawResults)
     {
         // are artists available ?
-        if (isset($rawResults->artists) AND is_array($rawResults->artists)) {
+        if (isset($rawResults->artists) && is_array($rawResults->artists)) {
 
             // iterate artists
             foreach ($rawResults->artists as $artist) {
@@ -197,7 +197,7 @@ class ResultSet implements \Iterator, \Countable
                 $artistItem = Artist::extractInfos($artist);
 
                 // store search result
-                $this->_addSearchResult($artistItem);
+                $this->addSearchResult($artistItem);
             }
         }
 
@@ -214,7 +214,7 @@ class ResultSet implements \Iterator, \Countable
     protected function extractTracks($rawResults)
     {
         // are tracks available ?
-        if (isset($rawResults->tracks) AND is_array($rawResults->tracks)) {
+        if (isset($rawResults->tracks) && is_array($rawResults->tracks)) {
 
             // iterate tracks
             foreach ($rawResults->tracks as $track) {
@@ -223,7 +223,7 @@ class ResultSet implements \Iterator, \Countable
                 $trackItem = Track::extractInfos($track);
 
                 // store search result
-                $this->_addSearchResult($trackItem);
+                $this->addSearchResult($trackItem);
             }
         }
 
@@ -240,7 +240,7 @@ class ResultSet implements \Iterator, \Countable
     public function getResultAt($indice)
     {
         // return AbstractItem if exist, else null
-        return (isset($this->_results[$indice])) ? $this->_results[$indice] : null;
+        return (isset($this->results[$indice])) ? $this->results[$indice] : null;
     }
 
     /**
@@ -251,7 +251,7 @@ class ResultSet implements \Iterator, \Countable
     public function current()
     {
         // return current AbstractItem
-        return current($this->_results);
+        return current($this->results);
     }
 
     /**
@@ -261,7 +261,7 @@ class ResultSet implements \Iterator, \Countable
      */
     public function next()
     {
-        next($this->_results);
+        next($this->results);
     }
 
     /**
@@ -271,7 +271,7 @@ class ResultSet implements \Iterator, \Countable
      */
     public function key()
     {
-        return key($this->_results);
+        return key($this->results);
     }
 
     /**
@@ -281,7 +281,7 @@ class ResultSet implements \Iterator, \Countable
      */
     public function valid()
     {
-        return (bool) (($this->key() !== null) AND ($this->key() !== false));
+        return (bool) (($this->key() !== null) && ($this->key() !== false));
     }
 
     /**
@@ -291,7 +291,7 @@ class ResultSet implements \Iterator, \Countable
      */
     public function rewind()
     {
-        reset($this->_results);
+        reset($this->results);
     }
 
     /**
@@ -302,7 +302,6 @@ class ResultSet implements \Iterator, \Countable
     public function count()
     {
         // return search result count
-        return count($this->_results);
+        return count($this->results);
     }
-
 }

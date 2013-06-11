@@ -23,25 +23,25 @@ class Track extends AbstractItem
 {
 
     /** @var int */
-    protected $_discNumber;
+    protected $discNumber;
 
     /** @var float */
-    protected $_length;
+    protected $length;
 
     /** @var int */
-    protected $_trackNumber;
+    protected $trackNumber;
 
     /** @var Album */
-    protected $_album;
+    protected $album;
 
     /** @var Artist[] */
-    protected $_artists;
+    protected $artists;
 
     /** @var ExternalId[] */
-    protected $_externalIds;
+    protected $externalIds;
 
     /** @var string[] */
-    protected $_territories;
+    protected $territories;
 
     /**
      * Set track length
@@ -52,7 +52,7 @@ class Track extends AbstractItem
     public function setLength($length)
     {
         // store lenght and return self
-        $this->_length = (float) $length;
+        $this->length = (float) $length;
 
         return $this;
     }
@@ -65,7 +65,7 @@ class Track extends AbstractItem
     public function getLength()
     {
         // return tracj length
-        return (float) $this->_length;
+        return (float) $this->length;
     }
 
     /**
@@ -77,7 +77,7 @@ class Track extends AbstractItem
     public function setDiscNumber($discNumber)
     {
         // store disc number and return self
-        $this->_discNumber = (int) $discNumber;
+        $this->discNumber = (int) $discNumber;
 
         return $this;
     }
@@ -90,7 +90,7 @@ class Track extends AbstractItem
     public function getDiscNumber()
     {
         // return disc number
-        return (int) $this->_discNumber;
+        return (int) $this->discNumber;
     }
 
     /**
@@ -102,7 +102,7 @@ class Track extends AbstractItem
     public function setTrackNumber($trackNumber)
     {
         // store track number and return self
-        $this->_trackNumber = (int) $trackNumber;
+        $this->trackNumber = (int) $trackNumber;
 
         return $this;
     }
@@ -115,7 +115,7 @@ class Track extends AbstractItem
     public function getTrackNumber()
     {
         // return track number
-        return (int) $this->_trackNumber;
+        return (int) $this->trackNumber;
     }
 
     /**
@@ -127,7 +127,7 @@ class Track extends AbstractItem
     public function setTerritories($territories)
     {
         // store territories availability and return self
-        $this->_territories = (array) $territories;
+        $this->territories = (array) $territories;
 
         return $this;
     }
@@ -140,7 +140,7 @@ class Track extends AbstractItem
     public function getTerritories()
     {
         // return territories availability
-        return (array) $this->_territories;
+        return (array) $this->territories;
     }
 
     /**
@@ -152,7 +152,7 @@ class Track extends AbstractItem
     public function setArtists($artists)
     {
         // store artists and return self
-        $this->_artists = (array) $artists;
+        $this->artists = (array) $artists;
 
         return $this;
     }
@@ -165,7 +165,7 @@ class Track extends AbstractItem
     public function getArtists()
     {
         // return artists
-        return (array) $this->_artists;
+        return (array) $this->artists;
     }
 
     /**
@@ -177,7 +177,7 @@ class Track extends AbstractItem
     public function setAlbum($album)
     {
         // store album and return self
-        $this->_album = $album;
+        $this->album = $album;
 
         return $this;
     }
@@ -190,7 +190,7 @@ class Track extends AbstractItem
     public function getAlbum()
     {
         // return album
-        return $this->_album;
+        return $this->album;
     }
 
     /**
@@ -202,7 +202,7 @@ class Track extends AbstractItem
     public function setExternalIds($externalIds)
     {
         // store external ids and return self
-        $this->_externalIds = (array) $externalIds;
+        $this->externalIds = (array) $externalIds;
 
         return $this;
     }
@@ -215,7 +215,7 @@ class Track extends AbstractItem
     public function getExternalIds()
     {
         // return track external ids
-        return (array) $this->_externalIds;
+        return (array) $this->externalIds;
     }
 
     /**
@@ -313,5 +313,4 @@ class Track extends AbstractItem
         // on retourne l'instance de la piste
         return $trackItem;
     }
-
 }

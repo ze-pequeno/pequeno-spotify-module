@@ -115,5 +115,4 @@ class LookupArtistTest extends TestCase
         $this->assertSame($artist->getAlbums(), $album->getArtist()->getAlbums());
         $this->assertEmpty($album->getArtist()->getPopularity());
     }
-
 }

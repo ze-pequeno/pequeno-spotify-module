@@ -20,8 +20,8 @@
 namespace PequenoSpotifyModuleTest\Utils;
 
 // set used namespaces
-use Zend\ServiceManager\ServiceManager,
-    Zend\Mvc\Service\ServiceManagerConfig;
+use Zend\ServiceManager\ServiceManager;
+use Zend\Mvc\Service\ServiceManagerConfig;
 
 class ServiceManagerFactory
 {
@@ -66,5 +66,4 @@ class ServiceManagerFactory
 
         return $serviceManager;
     }
-
 }

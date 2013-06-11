@@ -67,5 +67,4 @@ class LookupTrackTest extends TestCase
         $this->assertSame('GBBKS9900090', $externalId->getId());
         $this->assertSame('isrc', $externalId->getType());
     }
-
 }

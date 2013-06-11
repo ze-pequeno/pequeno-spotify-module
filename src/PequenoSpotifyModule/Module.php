@@ -20,11 +20,11 @@
 namespace PequenoSpotifyModule;
 
 // set used namespaces
-use Zend\EventManager\EventInterface,
-    Zend\ModuleManager\Feature\AutoloaderProviderInterface,
-    Zend\ModuleManager\Feature\BootstrapListenerInterface,
-    Zend\ModuleManager\Feature\ConfigProviderInterface,
-    Zend\Mvc\ModuleRouteListener;
+use Zend\EventManager\EventInterface;
+use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
+use Zend\ModuleManager\Feature\BootstrapListenerInterface;
+use Zend\ModuleManager\Feature\ConfigProviderInterface;
+use Zend\Mvc\ModuleRouteListener;
 
 class Module implements AutoloaderProviderInterface, BootstrapListenerInterface, ConfigProviderInterface
 {
@@ -39,7 +39,7 @@ class Module implements AutoloaderProviderInterface, BootstrapListenerInterface,
             // standard autoloader
             'Zend\Loader\StandardAutoloader' => array(
                 'namespaces' => array(
-                    __NAMESPACE__ => __DIR__.'/../../src/'.str_replace('\\', '/' , __NAMESPACE__),
+                    __NAMESPACE__ => __DIR__.'/../../src/'.str_replace('\\', '/', __NAMESPACE__),
                 ),
             ),
         );
@@ -73,5 +73,4 @@ class Module implements AutoloaderProviderInterface, BootstrapListenerInterface,
         // attach event manager to ModuleRouteListener
         $moduleRouteListener->attach($eventManager);
     }
-
 }

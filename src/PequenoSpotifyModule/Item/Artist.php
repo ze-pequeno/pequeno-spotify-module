@@ -23,7 +23,7 @@ class Artist extends AbstractItem
 {
 
     /** @var Album[] */
-    protected $_albums;
+    protected $albums;
 
     /**
      * Set artist albums
@@ -34,7 +34,7 @@ class Artist extends AbstractItem
     public function setAlbums($albums)
     {
         // store albums and return self
-        $this->_albums = (array) $albums;
+        $this->albums = (array) $albums;
 
         return $this;
     }
@@ -47,7 +47,7 @@ class Artist extends AbstractItem
     public function getAlbums()
     {
         // return artist albums
-        return (array) $this->_albums;
+        return (array) $this->albums;
     }
 
     /**
@@ -113,5 +113,4 @@ class Artist extends AbstractItem
         // return artist instance
         return $artistItem;
     }
-
 }

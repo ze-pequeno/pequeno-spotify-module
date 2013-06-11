@@ -16,69 +16,51 @@
  * and is licensed under the MIT license.
  */
 
-// try to get composer loader (from module or application directory)
-if (!($loader = @include __DIR__.'/../vendor/autoload.php') &&
-    !($loader = @include __DIR__.'/../../../autoload.php')) {
+// enable all error reporting
+ini_set('error_reporting', E_ALL);
 
-    // setup local directories to search ZF2 library
-    $directories = array(
-        'E:/library/zend/zendframework2/latest/library/',
-        'G:/library/zend/zendframework2/latest/library/',
-    );
+// setup files for retrieve composer autoloader
+$files = array(__DIR__.'/../vendor/autoload.php', __DIR__.'/../../../autoload.php');
 
-    // iterate search directories
-    foreach ($directories as $directory) {
+// iterate all files
+foreach ($files as $file) {
 
-        // get real path
-        $directory = realpath($directory);
+    // check file exist
+    if (file_exists($file)) {
 
-        // check search directories exist
-        if ($directory) {
-
-            // define ZF2_PATH constant and break
-            define('ZF2_PATH', $directory);
-            break;
-        }
+        // include loader
+        $loader = require $file;
+        break;
     }
-
-    // check if ZF2_PATH is defined
-    if (!defined('ZF2_PATH')) {
-
-        // throw RuntimeException indicate autoload file not found
-        throw new RuntimeException('"ZF2_PATH" is not defined and vendor/autoload.php could not be found. Did you run `php composer.phar install`?');
-    }
-
-    // set include path to include ZF2
-    set_include_path(implode(PATH_SEPARATOR, array(
-        ZF2_PATH,
-        get_include_path()
-    )));
-
-    // require Zend Autoloader class
-    require 'Zend/Loader/AutoloaderFactory.php';
-    require 'Zend/Loader/StandardAutoloader.php';
-
-    // setup autoloader from factory
-    \Zend\Loader\AutoloaderFactory::factory(
-        array(
-            \Zend\Loader\AutoloaderFactory::STANDARD_AUTOLOADER => array(
-                \Zend\Loader\StandardAutoloader::AUTOREGISTER_ZF => true,
-                \Zend\Loader\StandardAutoloader::ACT_AS_FALLBACK => false,
-                \Zend\Loader\StandardAutoloader::LOAD_NS => array(
-                    'PequenoSpotifyModule' => __DIR__.'/../src/PequenoSpotifyModule',
-                    'PequenoSpotifyModuleTest' => __DIR__.'/../tests/PequenoSpotifyModuleTest'
-                ),
-            )
-        )
-    );
 }
 
-// try to get TestConfiguration.php
-if (!$config = @include __DIR__.'/TestConfiguration.php') {
+// check composer autoloader exist
+if (!isset($loader)) {
 
-    // try to get TestConfiguration.php.dist
-    $config = require __DIR__.'/TestConfiguration.php.dist';
+    // throw RuntimeException indicate composer autoloader is not found
+    throw new RuntimeException('vendor/autoload.php could not be found. Did you install via composer?');
+}
+
+// add PequenoSpotifyModuleTest to loader
+$loader->add('PequenoSpotifyModuleTest', __DIR__);
+
+// setup files for retrieve configuration
+$configFiles = array(__DIR__.'/TestConfiguration.php', __DIR__.'/TestConfiguration.php.dist');
+
+// iterate all files
+foreach ($configFiles as $configFile) {
+
+    // check file exist
+    if (file_exists($configFile)) {
+
+        // include loader
+        $config = require $configFile;
+        break;
+    }
 }
 
 // set Configuration to ServiceManagerFactory
 \PequenoSpotifyModuleTest\Utils\ServiceManagerFactory::setConfig($config);
+
+// unset references
+unset($file, $file, $loader, $configFiles, $configFile, $config);
