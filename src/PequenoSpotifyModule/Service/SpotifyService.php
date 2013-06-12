@@ -136,11 +136,11 @@ class SpotifyService
 
     /**
      * Set response format
-     * @access protected
+     * @access public
      * @param  string         $format Response format
      * @return SpotifyService
      */
-    protected function setFormat($format)
+    public function setFormat($format)
     {
         // check if format is not valid
         if (!in_array($format, array(self::FORMAT_JSON, self::FORMAT_XML))) {
@@ -157,10 +157,10 @@ class SpotifyService
 
     /**
      * Get response format
-     * @access protected
+     * @access public
      * @return string
      */
-    protected function getFormat()
+    public function getFormat()
     {
         // return response format
         return $this->format;
