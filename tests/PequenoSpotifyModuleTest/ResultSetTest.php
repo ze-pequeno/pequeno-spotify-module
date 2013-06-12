@@ -32,7 +32,6 @@ class ResultSetTest extends TestCase
         $this->assertCount(6, $results);
         $this->assertEquals(6, $results->getSizeOfResults());
         $this->assertInstanceOf('\PequenoSpotifyModule\Item\Album', $results->getResultAt(0));
-        foreach ($results as $result);
     }
 
     public function testArtistsResultSet()
@@ -49,5 +48,13 @@ class ResultSetTest extends TestCase
         $this->assertCount(100, $results);
         $this->assertEquals(1650, $results->getSizeOfResults());
         $this->assertInstanceOf('\PequenoSpotifyModule\Item\Track', $results->getResultAt(0));
+    }
+
+    public function testCanIterateResultSet()
+    {
+        $results = new \PequenoSpotifyModule\ResultSet(JsonFileLoader::loadAlbums());
+        foreach ($results as $key => $result) {
+            $this->assertSame($results->getResultAt($key), $result);
+        }
     }
 }
