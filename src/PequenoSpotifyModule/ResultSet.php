@@ -119,7 +119,7 @@ class ResultSet implements \Iterator, \Countable
             $this->limit 		= (int) $rawResults->info->limit;
             $this->offset 		= (int) $rawResults->info->offset;
             $this->query		= (string) $rawResults->info->query;
-            $this->type		= (string) $rawResults->info->type;
+            $this->type		    = (string) $rawResults->info->type;
         }
 
         // return ResultSet
