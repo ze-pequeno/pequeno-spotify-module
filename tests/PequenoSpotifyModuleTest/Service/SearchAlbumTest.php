@@ -40,9 +40,10 @@ class SearchAlbumTest extends TestCase
         $this->assertEquals(1.00000, $album->getPopularity());
 
         /** @var \PequenoSpotifyModule\Item\Artist $artist */
-        $artist = $album->getArtist();
+        $artists = $album->getArtists();
+        $artist = reset($artists);
         $this->assertInstanceOf('\PequenoSpotifyModule\Item\Artist', $artist);
         $this->assertEquals('spotify:artist:4tZwfgrHOc3mvqYlEYSvVi', $artist->getUri());
-        $this->assertEquals('Daft Punk', $album->getName());
+        $this->assertEquals('Daft Punk', $artist->getName());
     }
 }
