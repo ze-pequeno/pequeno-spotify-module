@@ -29,8 +29,8 @@ class SearchAlbumTest extends TestCase
     {
         // search albums
         $albums = $this->getSpotifyService()->searchAlbum('random access memories');
-        $this->assertCount(6, $albums);
-        $this->assertEquals(6, $albums->getSizeOfResults());
+        $this->assertCount(7, $albums);
+        $this->assertEquals(7, $albums->getSizeOfResults());
 
         /** @var \PequenoSpotifyModule\Item\Album $album */
         $album = $albums->getResultAt(0);

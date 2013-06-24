@@ -80,8 +80,12 @@ class Artist extends AbstractItem
      */
     public static function extractInfos($artist)
     {
+        // get artist href and name
+        $href = (isset($artist->href)) ? $artist->href : '';
+        $name = (isset($artist->name)) ? $artist->name : '';
+
         // create Artist instance
-        $artistItem = self::build($artist->href, $artist->name);
+        $artistItem = self::build($href, $name);
 
         // is popularity available ?
         if (isset($artist->popularity)) {

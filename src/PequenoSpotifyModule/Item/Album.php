@@ -203,8 +203,8 @@ class Album extends AbstractItem
         $albumItem = new self();
 
         // update informations
-        $albumItem->setUri((string) $album->href);
-        $albumItem->setName((string) $album->name);
+        $albumItem->setUri((string) (isset($album->href)) ? $album->href : '');
+        $albumItem->setName((string) (isset($album->name)) ? $album->name : '');
 
         // is popularity available ?
         if (isset($album->popularity)) {
