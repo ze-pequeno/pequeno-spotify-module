@@ -16,51 +16,17 @@
  * and is licensed under the MIT license.
  */
 
+// set namespace
+namespace PequenoSpotifyModuleTest;
+
+// set used namespaces
+use PequenoSpotifyModuleTest\Utils\Bootstrap;
+
 // enable all error reporting
-ini_set('error_reporting', E_ALL);
+error_reporting(E_ALL | E_STRICT);
 
-// setup files for retrieve composer autoloader
-$files = array(__DIR__.'/../vendor/autoload.php', __DIR__.'/../../../autoload.php');
+// require Bootstrap class
+require __DIR__.'/PequenoSpotifyModuleTest/Utils/Bootstrap.php';
 
-// iterate all files
-foreach ($files as $file) {
-
-    // check file exist
-    if (file_exists($file)) {
-
-        // include loader
-        $loader = require $file;
-        break;
-    }
-}
-
-// check composer autoloader exist
-if (!isset($loader)) {
-
-    // throw RuntimeException indicate composer autoloader is not found
-    throw new RuntimeException('vendor/autoload.php could not be found. Did you install via composer?');
-}
-
-// add PequenoSpotifyModuleTest to loader
-$loader->add('PequenoSpotifyModuleTest', __DIR__);
-
-// setup files for retrieve configuration
-$configFiles = array(__DIR__.'/TestConfiguration.php', __DIR__.'/TestConfiguration.php.dist');
-
-// iterate all files
-foreach ($configFiles as $configFile) {
-
-    // check file exist
-    if (file_exists($configFile)) {
-
-        // include loader
-        $config = require $configFile;
-        break;
-    }
-}
-
-// set Configuration to ServiceManagerFactory
-\PequenoSpotifyModuleTest\Utils\ServiceManagerFactory::setConfig($config);
-
-// unset references
-unset($file, $file, $loader, $configFiles, $configFile, $config);
+// init Boostrap class
+Bootstrap::init();

@@ -20,26 +20,57 @@
 namespace PequenoSpotifyModuleTest\Utils;
 
 // set used namespaces
+use Zend\Json\Json;
 
 class JsonFileLoader
 {
+
+    /**
+     * Load json albums file
+     * @access public
+     * @static
+     * @return object
+     */
     public static function loadAlbums()
     {
+        // load file
         return self::loadFile('albums.json');
     }
 
+    /**
+     * Load json artists file
+     * @access public
+     * @static
+     * @return object
+     */
     public static function loadArtists()
     {
+        // load file
         return self::loadFile('artists.json');
     }
 
+    /**
+     * Load json tracks file
+     * @access public
+     * @static
+     * @return object
+     */
     public static function loadTracks()
     {
+        // load file
         return self::loadFile('tracks.json');
     }
 
+    /**
+     * Load json file from _files directory
+     * @access private
+     * @static
+     * @param  string $file File to load
+     * @return object
+     */
     private static function loadFile($file)
     {
-        return \Zend\Json\Json::decode(file_get_contents(__DIR__.'/../_files/'.$file));
+        // return file content as object
+        return Json::decode(file_get_contents(__DIR__.'/../_files/'.$file));
     }
 }
