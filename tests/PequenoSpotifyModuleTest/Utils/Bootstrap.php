@@ -126,6 +126,7 @@ class Bootstrap
 
         // set application configuration to service manager
         $serviceManager->setService('ApplicationConfig', $appConfig);
+        $serviceManager->setFactory('ServiceListener', 'Zend\Mvc\Service\ServiceListenerFactory');
 
         /** @var $moduleManager \Zend\ModuleManager\ModuleManager */
         $moduleManager = $serviceManager->get('ModuleManager');
