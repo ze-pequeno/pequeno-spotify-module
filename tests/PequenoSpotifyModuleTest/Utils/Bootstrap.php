@@ -150,7 +150,7 @@ class Bootstrap
         if (static::$zf2ModulePaths === null) {
 
             // create paths container
-            static::$zf2ModulePaths = array(dirname(dirname(__DIR__)));
+            static::$zf2ModulePaths = array(dirname(dirname(dirname(__DIR__))));
         }
 
         // be sure we have a paths list
