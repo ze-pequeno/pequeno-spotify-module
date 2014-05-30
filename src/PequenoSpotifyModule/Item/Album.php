@@ -21,7 +21,6 @@ namespace PequenoSpotifyModule\Item;
 
 class Album extends AbstractItem
 {
-
     /** @var string */
     protected $released;
 

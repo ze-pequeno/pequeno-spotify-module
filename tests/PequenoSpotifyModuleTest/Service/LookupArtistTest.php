@@ -59,8 +59,8 @@ class LookupArtistTest extends TestCase
         /** @var $album \PequenoSpotifyModule\Item\Album */
         $album = end($albums);
         $this->assertInstanceOf('PequenoSpotifyModule\Item\Album', $album);
-        $this->assertEquals('spotify:album:51aFwDck8urC5HfpXJ3e6J', $album->getUri());
-        $this->assertEquals('Ultra Obscene', $album->getName());
+        $this->assertEquals('spotify:album:7gljDo33wlUkdGGVwkKDMG', $album->getUri());
+        $this->assertEquals('Atlantic Jaxx - A Compilation Vol 1', $album->getName());
         $this->assertNotEmpty($album->getTerritories());
         $this->assertEmpty($album->getReleased());
         $this->assertEmpty($album->getArtists());
@@ -91,13 +91,13 @@ class LookupArtistTest extends TestCase
         /** @var $album \PequenoSpotifyModule\Item\Album */
         $album = end($albums);
         $this->assertInstanceOf('PequenoSpotifyModule\Item\Album', $album);
-        $this->assertEquals('spotify:album:51aFwDck8urC5HfpXJ3e6J', $album->getUri());
-        $this->assertEquals('Ultra Obscene', $album->getName());
+        $this->assertEquals('spotify:album:7gljDo33wlUkdGGVwkKDMG', $album->getUri());
+        $this->assertEquals('Atlantic Jaxx - A Compilation Vol 1', $album->getName());
         $this->assertNotEmpty($album->getTerritories());
         $this->assertEmpty($album->getArtists());
         $this->assertEmpty($album->getTracks());
         $this->assertNotEmpty($album->getExternalIds());
-        $this->assertSame('1994', $album->getReleased());
+        $this->assertSame('1996', $album->getReleased());
 
         // album external ids assertions
         $this->assertNotEmpty($album->getExternalIds());
@@ -105,7 +105,7 @@ class LookupArtistTest extends TestCase
         /** @var $externalId \PequenoSpotifyModule\Item\ExternalId */
         $externalId = end($externalIds);
         $this->assertInstanceOf('PequenoSpotifyModule\Item\ExternalId', $externalId);
-        $this->assertSame('634904013028', $externalId->getId());
+        $this->assertSame('5051083041171', $externalId->getId());
         $this->assertSame('upc', $externalId->getType());
 
         // album artist assertions

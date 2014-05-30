@@ -21,7 +21,6 @@ namespace PequenoSpotifyModule\Item;
 
 abstract class AbstractItem
 {
-
     /** @var string */
     protected $uri;
 

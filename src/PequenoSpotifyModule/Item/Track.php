@@ -21,7 +21,6 @@ namespace PequenoSpotifyModule\Item;
 
 class Track extends AbstractItem
 {
-
     /** @var int */
     protected $discNumber;
 

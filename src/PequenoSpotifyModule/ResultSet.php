@@ -28,7 +28,6 @@ use PequenoSpotifyModule\Item\Track;
 
 class ResultSet implements \Iterator, \Countable
 {
-
     /** @var int */
     protected $numResults = null;
 

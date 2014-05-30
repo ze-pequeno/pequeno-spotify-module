@@ -21,7 +21,6 @@ namespace PequenoSpotifyModule\Item;
 
 class ExternalId
 {
-
     /** @var string */
     protected $id;
 

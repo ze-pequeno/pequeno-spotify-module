@@ -38,7 +38,7 @@ class LookupTrackTest extends TestCase
         $this->assertEquals(self::TRACK_URI, $track->getUri());
         $this->assertEquals('Rendez-vu', $track->getName());
         $this->assertGreaterThan(0.0, $track->getPopularity());
-        $this->assertSame(346.158, $track->getLength());
+        $this->assertSame(345.800000, $track->getLength());
         $this->assertSame(1, $track->getTrackNumber());
         $this->assertEmpty($track->getDiscNumber());
         $this->assertNotEmpty($track->getTerritories());

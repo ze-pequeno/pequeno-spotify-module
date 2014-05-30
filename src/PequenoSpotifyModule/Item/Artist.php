@@ -21,7 +21,6 @@ namespace PequenoSpotifyModule\Item;
 
 class Artist extends AbstractItem
 {
-
     /** @var Album[] */
     protected $albums;
 

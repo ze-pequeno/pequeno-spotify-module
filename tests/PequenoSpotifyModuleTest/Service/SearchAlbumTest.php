@@ -29,15 +29,15 @@ class SearchAlbumTest extends TestCase
     {
         // search albums
         $albums = $this->getSpotifyService()->searchAlbum('random access memories');
-        $this->assertCount(10, $albums);
-        $this->assertEquals(10, $albums->getSizeOfResults());
+        $this->assertCount(9, $albums);
+        $this->assertEquals(9, $albums->getSizeOfResults());
 
         /** @var \PequenoSpotifyModule\Item\Album $album */
         $album = $albums->getResultAt(0);
         $this->assertInstanceOf('\PequenoSpotifyModule\Item\Album', $album);
         $this->assertEquals('spotify:album:4m2880jivSbbyEGAKfITCa', $album->getUri());
         $this->assertEquals('Random Access Memories', $album->getName());
-        $this->assertEquals(0.91000, $album->getPopularity());
+        $this->assertEquals(0.92, $album->getPopularity());
 
         /** @var \PequenoSpotifyModule\Item\Artist $artist */
         $artists = $album->getArtists();

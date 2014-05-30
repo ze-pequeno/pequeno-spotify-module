@@ -30,7 +30,6 @@ use Zend\Http\Response as HttpResponse;
 
 class SpotifyService
 {
-
     /** @var string */
     const URI_API = 'http://ws.spotify.com';
 
@@ -446,7 +445,7 @@ class SpotifyService
      */
     protected function generateUriParameter($uri, $format)
     {
-        // on regarde si l'URI fourni est complète ou non
+        // on regarde si l'URI fourni est complï¿½te ou non
         if (substr($uri, 0, 14) != substr($format, 0, 14)) {
 
             // generate URI according format with last URI parts
