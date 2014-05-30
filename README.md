@@ -10,9 +10,9 @@ PequenoSpotifyModule integrates Spotify Web API with Zend Framework 2 quickly an
 
 ## Release Information
 
-Pequeno Spotify Module 1.0.6
+Pequeno Spotify Module 1.0.7dev
 
-This is the sixth maintenance release for the version 1.0 series.
+This is the seventh maintenance release (in development) for the version 1.0 series.
 
 30 May 2014
 
