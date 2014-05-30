@@ -1,7 +1,7 @@
 Zend Framework 2 Module for Spotify Web API
 ====================
 
-[![Build Status](https://travis-ci.org/ze-pequeno/pequeno-spotify-module.svg?branch=master)](https://travis-ci.org/ze-pequeno/pequeno-spotify-module) [![Coverage Status](https://img.shields.io/coveralls/ze-pequeno/pequeno-spotify-module/badge.svg?branch=master)](https://coveralls.io/r/ze-pequeno/pequeno-spotify-module?branch=master)
+[![Build Status](https://travis-ci.org/ze-pequeno/pequeno-spotify-module.svg?branch=master)](https://travis-ci.org/ze-pequeno/pequeno-spotify-module) [![Coverage Status](https://img.shields.io/coveralls/ze-pequeno/pequeno-spotify-module.svg)](https://coveralls.io/r/ze-pequeno/pequeno-spotify-module?branch=master)
 
 PequenoSpotifyModule integrates Spotify Web API with Zend Framework 2 quickly and easily.
 
