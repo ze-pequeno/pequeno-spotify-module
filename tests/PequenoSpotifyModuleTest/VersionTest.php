@@ -27,6 +27,6 @@ class VersionTest extends TestCase
 
     public function testWillRetriveVersionNumber()
     {
-        $this->assertEquals('1.0.7', \PequenoSpotifyModule\Version::getVersion());
+        $this->assertEquals('1.0.8dev', \PequenoSpotifyModule\Version::getVersion());
     }
 }
