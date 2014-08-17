@@ -22,7 +22,7 @@ namespace PequenoSpotifyModule;
 class Version
 {
     /** @var string */
-    const VERSION = '1.0.8dev';
+    const VERSION = '1.0.8';
 
     /**
      * Get version number
