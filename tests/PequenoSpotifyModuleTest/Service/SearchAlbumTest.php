@@ -37,7 +37,7 @@ class SearchAlbumTest extends TestCase
         $this->assertInstanceOf('\PequenoSpotifyModule\Item\Album', $album);
         $this->assertEquals('spotify:album:4m2880jivSbbyEGAKfITCa', $album->getUri());
         $this->assertEquals('Random Access Memories', $album->getName());
-        $this->assertEquals(0.92, $album->getPopularity());
+        $this->assertGreaterThanOrEqual(0.0, $album->getPopularity());
 
         /** @var \PequenoSpotifyModule\Item\Artist $artist */
         $artists = $album->getArtists();

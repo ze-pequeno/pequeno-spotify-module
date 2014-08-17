@@ -37,7 +37,7 @@ class LookupTrackTest extends TestCase
         $this->assertInstanceOf('PequenoSpotifyModule\Item\Track', $track);
         $this->assertEquals(self::TRACK_URI, $track->getUri());
         $this->assertEquals('Rendez-vu', $track->getName());
-        $this->assertGreaterThan(0.0, $track->getPopularity());
+        $this->assertGreaterThanOrEqual(0.0, $track->getPopularity());
         $this->assertSame(345.800000, $track->getLength());
         $this->assertSame(1, $track->getTrackNumber());
         $this->assertEmpty($track->getDiscNumber());

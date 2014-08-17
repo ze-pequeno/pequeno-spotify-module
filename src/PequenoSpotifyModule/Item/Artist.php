@@ -97,7 +97,7 @@ class Artist extends AbstractItem
         if (isset($artist->albums) && is_array($artist->albums)) {
 
             // setup container
-            $albums	= array();
+            $albums    = array();
 
             // iterate albums
             foreach ($artist->albums as $album) {

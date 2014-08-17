@@ -91,7 +91,7 @@ class LookupAlbumTest extends TestCase
         $this->assertSame(0, $track->getTrackNumber());
         $this->assertSame(0, $track->getDiscNumber());
         $this->assertSame(0.0, $track->getLength());
-        $this->assertSame(0.0, $track->getPopularity());
+        $this->assertGreaterThanOrEqual(0.0, $track->getPopularity());
 
         // track artists assertions
         $this->assertNotEmpty($track->getArtists());
@@ -138,7 +138,7 @@ class LookupAlbumTest extends TestCase
         $this->assertSame(1, $track->getTrackNumber());
         $this->assertSame(1, $track->getDiscNumber());
         $this->assertGreaterThan(0.0, $track->getLength());
-        $this->assertGreaterThan(0.0, $track->getPopularity());
+        $this->assertGreaterThanOrEqual(0.0, $track->getPopularity());
 
         // track artists assertions
         $this->assertNotEmpty($track->getArtists());

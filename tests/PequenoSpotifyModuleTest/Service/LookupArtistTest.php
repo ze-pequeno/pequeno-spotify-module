@@ -37,7 +37,7 @@ class LookupArtistTest extends TestCase
         $this->assertInstanceOf('PequenoSpotifyModule\Item\Artist', $artist);
         $this->assertEquals(self::ARTIST_URI, $artist->getUri());
         $this->assertEquals('Basement Jaxx', $artist->getName());
-        $this->assertSame(0.0, $artist->getPopularity());
+        $this->assertGreaterThanOrEqual(0.0, $artist->getPopularity());
 
         // albums assertions
         $this->assertEmpty($artist->getAlbums());
@@ -52,7 +52,7 @@ class LookupArtistTest extends TestCase
         $this->assertInstanceOf('PequenoSpotifyModule\Item\Artist', $artist);
         $this->assertEquals(self::ARTIST_URI, $artist->getUri());
         $this->assertEquals('Basement Jaxx', $artist->getName());
-        $this->assertSame(0.0, $artist->getPopularity());
+        $this->assertGreaterThanOrEqual(0.0, $artist->getPopularity());
         // albums assertions
         $this->assertNotEmpty($artist->getAlbums());
         $albums = $artist->getAlbums();
@@ -84,7 +84,7 @@ class LookupArtistTest extends TestCase
         $this->assertInstanceOf('PequenoSpotifyModule\Item\Artist', $artist);
         $this->assertEquals(self::ARTIST_URI, $artist->getUri());
         $this->assertEquals('Basement Jaxx', $artist->getName());
-        $this->assertSame(0.0, $artist->getPopularity());
+        $this->assertGreaterThanOrEqual(0.0, $artist->getPopularity());
         // albums assertions
         $this->assertNotEmpty($artist->getAlbums());
         $albums = $artist->getAlbums();

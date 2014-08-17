@@ -113,12 +113,12 @@ class ResultSet implements \Iterator, \Countable
         if (isset($rawResults->info)) {
 
             // get search informations
-            $this->numResults 	= (int) $rawResults->info->num_results;
-            $this->numPage		= (int) $rawResults->info->page;
-            $this->limit 		= (int) $rawResults->info->limit;
-            $this->offset 		= (int) $rawResults->info->offset;
-            $this->query		= (string) $rawResults->info->query;
-            $this->type		    = (string) $rawResults->info->type;
+            $this->numResults = (int) $rawResults->info->num_results;
+            $this->numPage = (int) $rawResults->info->page;
+            $this->limit = (int) $rawResults->info->limit;
+            $this->offset = (int) $rawResults->info->offset;
+            $this->query = (string) $rawResults->info->query;
+            $this->type = (string) $rawResults->info->type;
         }
 
         // return ResultSet
