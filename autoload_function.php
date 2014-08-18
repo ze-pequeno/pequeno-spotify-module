@@ -19,10 +19,11 @@ return function ($class) {
     }
 
     // check if class exist on classmap
-    if (isset($classMap[$class])) {
+    if ($classMap && isset($classMap[$class])) {
 
-        // return class inclusion from class map
-        return include $classMap[$class];
+	    /** @noinspection PhpIncludeInspection */
+	    // return class inclusion from class map
+	    return include $classMap[$class];
     }
 
     // class not found on classmap, so return false
