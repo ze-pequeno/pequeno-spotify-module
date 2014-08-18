@@ -11,9 +11,9 @@ before_script:
   - php composer.phar install --prefer-source --dev
 
 script:
-  - ./vendor/bin/phpunit -c ./phpunit.xml --coverage-clover ./build/logs/clover.xml --exclude-group Performance
-  - ./vendor/bin/phpunit --group=Functional
-  - ./vendor/bin/phpcs --standard=PSR2 ./src/ ./tests/
+  - ./vendor/bin/php-cs-fixer fix ./src -v --dry-run
+  - ./vendor/bin/php-cs-fixer fix ./tests -v --dry-run
+  - ./vendor/bin/phpunit -c ./phpunit.xml --coverage-clover ./build/logs/clover.xml
 
 branches:
   only:
