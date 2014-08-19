@@ -33,8 +33,8 @@ that are listed in `composer.json`
 
 ## Registered Service Names
 
- * `pequeno.services.spotify`: a `PequenoSpotifyModule\Spotify` instance
- * `Pequeno\Services\Spotify`: an alias of `pequeno.services.spotify`
+ * `Pequeno\Services\Spotify`: a `PequenoSpotifyModule\Spotify` instance
+ * `pequeno.services.spotify`: an alias of `Pequeno\Services\Spotify`
 
 #### Service Locator
 To access the SpotifyService, use the main service locator:
