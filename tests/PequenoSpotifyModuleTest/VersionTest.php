@@ -20,6 +20,7 @@
 namespace PequenoSpotifyModuleTest;
 
 // set used namespaces
+use PequenoSpotifyModule\Version;
 use PequenoSpotifyModuleTest\Framework\TestCase;
 
 class VersionTest extends TestCase
@@ -27,6 +28,6 @@ class VersionTest extends TestCase
 
     public function testWillRetriveVersionNumber()
     {
-        $this->assertEquals('2.0.0dev', \PequenoSpotifyModule\Version::getVersion());
+        $this->assertEquals('2.0.0dev', Version::getVersion());
     }
 }

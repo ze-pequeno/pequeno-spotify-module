@@ -20,27 +20,13 @@
 namespace PequenoSpotifyModuleTest;
 
 // set used namespaces
-use PequenoSpotifyModuleTest\Utils\Bootstrap;
+use PequenoSpotifyModuleTest\Utils\ServiceManagerFactory;
 
 // enable all error reporting
 error_reporting(E_ALL | E_STRICT);
 
-// require Bootstrap class
-require __DIR__.'/PequenoSpotifyModuleTest/Utils/Bootstrap.php';
+// require ServiceManagerFactory class
+require __DIR__.'/PequenoSpotifyModuleTest/Factory/ServiceManagerFactory.php';
 
-// include configuration file
-$files = array(__DIR__.'/TestConfiguration.php', __DIR__.'/TestConfiguration.php.dist');
-foreach ($files as $file) {
-    if (file_exists($file)) {
-        /** @noinspection PhpIncludeInspection */
-        $config = require $file;
-        break;
-    }
-}
-
-// throw if no valid configuration found
-if (!isset($config))
-    throw new \RuntimeException(sprintf('no valid configuration file found : %s', implode(', ', $files)));
-
-// init Boostrap class
-Bootstrap::init($config);
+// boostrap ServiceManagerFactory class
+ServiceManagerFactory::bootstrap();

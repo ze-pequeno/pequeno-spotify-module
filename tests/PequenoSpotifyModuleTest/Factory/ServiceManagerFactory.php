@@ -24,50 +24,27 @@ use Zend\Mvc\Service\ServiceManagerConfig;
 use Zend\ServiceManager\ServiceManager;
 use RuntimeException;
 
-class Bootstrap
+class ServiceManagerFactory
 {
-    /** @var  ServiceManager */
+    /** @var array */
+    protected static $configuration;
+
+    /** @var ServiceManager */
     protected static $serviceManager;
-
-    /**
-     * Get service manager instance
-     * @access public
-     * @static
-     * @return ServiceManager
-     */
-    public static function getServiceManager()
-    {
-        // return service manager instance
-        return static::$serviceManager;
-    }
-
-    /**
-     * Set service manager instance
-     * @access public
-     * @static
-     * @param  ServiceManager $serviceManager Service manager instance
-     * @return void
-     */
-    public static function setServiceManager(ServiceManager $serviceManager)
-    {
-        // store service manager instance
-        static::$serviceManager = $serviceManager;
-    }
 
     /**
      * Initialize bootstrap class
      * @access public
      * @static
-     * @param  array $config
      * @return void
      */
-    public static function init($config)
+    public static function bootstrap()
     {
         // init autoloader
         static::initAutoloader();
 
-        // init service manager
-        static::initServiceManager($config);
+        // init configuration
+        static::initConfiguration();
     }
 
     /**
@@ -98,14 +75,43 @@ class Bootstrap
     }
 
     /**
-     * Initialize service manager
-     * @access protected
-     * @static
-     * @param  array $config
-     * @return void
-     */
-    protected static function initServiceManager($config)
+	 * Load configuration needed by tests
+	 * @access protected
+	 * @static
+	 *
+	 * @throws RuntimeException
+	 */
+    protected static function initConfiguration()
     {
+        // get tests path
+        $testsPath = static::findParentPath('tests');
+
+        // include configuration file
+        $files = array($testsPath.'/TestConfiguration.php', $testsPath.'/TestConfiguration.php.dist');
+        foreach ($files as $file) {
+            if (file_exists($file)) {
+                /** @noinspection PhpIncludeInspection */
+                static::$configuration = require $file;
+                break;
+            }
+        }
+
+        // throw if no valid configuration found
+        if (static::$configuration === null)
+            throw new RuntimeException(sprintf('no valid configuration file found : %s', implode(', ', $files)));
+    }
+
+    /**
+	 * Get service manager instance
+	 * @access public
+	 * @static
+	 * @return ServiceManager
+	 */
+    public static function getServiceManager()
+    {
+        // retrieve configuration
+        $config = static::$configuration ?: array();
+
         // get service manager configuration
         $smConfig = isset($config['service_manager']) ? $config['service_manager'] : array();
 
@@ -122,8 +128,8 @@ class Bootstrap
         // load modules and return service manager instance
         $moduleManager->loadModules();
 
-        // store service manager
-        static::setServiceManager($serviceManager);
+        // return service manager
+        return $serviceManager;
     }
 
     /**
