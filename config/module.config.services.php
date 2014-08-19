@@ -6,12 +6,12 @@ namespace PequenoSpotifyModule;
 // return service manager configuration
 return array(
     'aliases' => array(
-        'pequeno.services.spotify' => 'Pequeno\Service\SpotifyService',
+        'pequeno.services.spotify' => 'Pequeno\Services\Spotify',
     ),
     'factories' => array(
-        'Pequeno\Service\SpotifyService' => function ($sm) {
-            // return new SpotifyService instance
-            return new \PequenoSpotifyModule\Service\SpotifyService();
+        'Pequeno\Services\Spotify' => function ($sm) {
+            // return new Spotify service instance
+            return new Spotify();
         },
     ),
 );

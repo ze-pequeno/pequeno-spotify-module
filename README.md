@@ -33,8 +33,8 @@ that are listed in `composer.json`
 
 ## Registered Service Names
 
- * `pequeno.services.spotify`: a `PequenoSpotifyModule\Service\SpotifyService` instance
- * `Pequeno\Service\SpotifyService`: an alias of `pequeno.services.spotify`
+ * `pequeno.services.spotify`: a `PequenoSpotifyModule\Spotify` instance
+ * `Pequeno\Services\Spotify`: an alias of `pequeno.services.spotify`
 
 #### Service Locator
 To access the SpotifyService, use the main service locator:
@@ -42,5 +42,5 @@ To access the SpotifyService, use the main service locator:
 ```php
 // for example, in a controller:
 $spotify = $this->getServiceLocator()->get('pequeno.services.spotify');
-$spotify = $this->getServiceLocator()->get('Pequeno\Service\SpotifyService');
+$spotify = $this->getServiceLocator()->get('Pequeno\Services\Spotify');
 ```
