@@ -25,7 +25,6 @@ use PequenoSpotifyModuleTest\Framework\TestCase;
 
 class VersionTest extends TestCase
 {
-
     public function testWillRetriveVersionNumber()
     {
         $this->assertEquals('2.0.0dev', Version::getVersion());

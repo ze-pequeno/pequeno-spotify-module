@@ -26,7 +26,7 @@ use PequenoSpotifyModuleTest\Utils\ServiceManagerFactory;
 error_reporting(E_ALL | E_STRICT);
 
 // require ServiceManagerFactory class
-require __DIR__.'/PequenoSpotifyModuleTest/Factory/ServiceManagerFactory.php';
+require __DIR__ . '/PequenoSpotifyModuleTest/Utils/ServiceManagerFactory.php';
 
 // boostrap ServiceManagerFactory class
 ServiceManagerFactory::bootstrap();

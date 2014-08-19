@@ -24,7 +24,6 @@ use PequenoSpotifyModuleTest\Framework\TestCase;
 
 class ServiceManagerTest extends TestCase
 {
-
     public function testWillInstanciateServiceManager()
     {
         // retrieve service manager
