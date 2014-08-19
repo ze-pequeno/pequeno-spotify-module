@@ -15,32 +15,21 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
+namespace PequenoSpotifyModule\Factory;
 
-// set namespace
-namespace PequenoSpotifyModuleTest;
+use PequenoSpotifyModule\Options\ModuleOptions;
+use Zend\ServiceManager\FactoryInterface;
+use Zend\ServiceManager\ServiceLocatorInterface;
 
-// set used namespaces
-use PequenoSpotifyModuleTest\Utils\Bootstrap;
+class ModuleOptionsFactory implements FactoryInterface
+{
+    /**
+	 * {@inheritDoc}
+	 */
+    public function createService(ServiceLocatorInterface $serviceLocator)
+    {
+        $config = $serviceLocator->get('Config');
 
-// enable all error reporting
-error_reporting(E_ALL | E_STRICT);
-
-// require Bootstrap class
-require __DIR__.'/PequenoSpotifyModuleTest/Utils/Bootstrap.php';
-
-// include configuration file
-$files = array(__DIR__.'/TestConfiguration.php', __DIR__.'/TestConfiguration.php.dist');
-foreach ($files as $file) {
-    if (file_exists($file)) {
-        /** @noinspection PhpIncludeInspection */
-        $config = require $file;
-        break;
+        return new ModuleOptions($config['pequeno_spotify']);
     }
 }
-
-// throw if no valid configuration found
-if (!isset($config))
-    throw new \RuntimeException(sprintf('no valid configuration file found : %s', implode(', ', $files)));
-
-// init Boostrap class
-Bootstrap::init($config);

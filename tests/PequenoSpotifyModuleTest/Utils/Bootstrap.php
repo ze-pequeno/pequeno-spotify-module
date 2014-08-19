@@ -26,12 +26,8 @@ use RuntimeException;
 
 class Bootstrap
 {
-
     /** @var  ServiceManager */
     protected static $serviceManager;
-
-    /** @var string[] */
-    protected static $zf2ModulePaths;
 
     /**
      * Get service manager instance
@@ -62,18 +58,16 @@ class Bootstrap
      * Initialize bootstrap class
      * @access public
      * @static
+     * @param  array $config
      * @return void
      */
-    public static function init()
+    public static function init($config)
     {
-        // add vendor and module directory to module paths if exists
-        static::addModulePaths(array('vendor', 'module'));
-
         // init autoloader
         static::initAutoloader();
 
         // init service manager
-        static::initServiceManager();
+        static::initServiceManager($config);
     }
 
     /**
@@ -93,7 +87,7 @@ class Bootstrap
         if (!$vendorPath || !file_exists($vendorPath.'/autoload.php')) {
 
             // throw RuntimeException indicate composer autoloader is not found
-            throw new RuntimeException('vendor/autoload.php could not be found. Did you install via composer?');
+            throw new RuntimeException('vendor/autoload.php could not be found. Did you install via composer ?');
         }
 
         /** @noinspection PhpIncludeInspection include autoload file */
@@ -107,25 +101,19 @@ class Bootstrap
      * Initialize service manager
      * @access protected
      * @static
+     * @param  array $config
      * @return void
      */
-    protected static function initServiceManager()
+    protected static function initServiceManager($config)
     {
-        // setup application configuration
-        $appConfig = array(
-            'module_listener_options' => array(
-                'module_paths' => static::$zf2ModulePaths,
-            ),
-            'modules' => array(
-                'PequenoSpotifyModule',
-            ),
-        );
+        // get service manager configuration
+        $smConfig = isset($config['service_manager']) ? $config['service_manager'] : array();
 
         // create service manager instance
-        $serviceManager = new ServiceManager(new ServiceManagerConfig());
+        $serviceManager = new ServiceManager(new ServiceManagerConfig($smConfig));
 
         // set application configuration to service manager
-        $serviceManager->setService('ApplicationConfig', $appConfig);
+        $serviceManager->setService('ApplicationConfig', $config);
         $serviceManager->setFactory('ServiceListener', 'Zend\Mvc\Service\ServiceListenerFactory');
 
         /** @var $moduleManager \Zend\ModuleManager\ModuleManager */
@@ -136,37 +124,6 @@ class Bootstrap
 
         // store service manager
         static::setServiceManager($serviceManager);
-    }
-
-    /**
-     * Add module paths to container
-     * @access protected
-     * @static
-     * @param  string|string[] $paths Module paths
-     * @return void
-     */
-    protected static function addModulePaths($paths)
-    {
-        // check if paths container is not setup
-        if (static::$zf2ModulePaths === null) {
-
-            // create paths container
-            static::$zf2ModulePaths = array(dirname(dirname(dirname(__DIR__))));
-        }
-
-        // be sure we have a paths list
-        $paths = array_filter((array) $paths);
-
-        // iterate all paths
-        foreach ($paths as $path) {
-
-            // check parent path exists
-            if (($modulePath = static::findParentPath($path)) && !in_array($modulePath, static::$zf2ModulePaths)) {
-
-                // add module path to container
-                static::$zf2ModulePaths[] = $modulePath;
-            }
-        }
     }
 
     /**

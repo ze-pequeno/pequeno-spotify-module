@@ -15,32 +15,37 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
+namespace PequenoSpotifyModule\Options;
 
-// set namespace
-namespace PequenoSpotifyModuleTest;
+use Zend\Stdlib\AbstractOptions;
 
-// set used namespaces
-use PequenoSpotifyModuleTest\Utils\Bootstrap;
+class ModuleOptions extends AbstractOptions
+{
+    /**
+	 * Key of the Http client fetched from service locator
+	 *
+	 * @var string|null
+	 */
+    protected $httpClient;
 
-// enable all error reporting
-error_reporting(E_ALL | E_STRICT);
+    /**
+	 * Set the Http client key
+	 *
+	 * @param  string $httpClient
+	 * @return void
+	 */
+    public function setHttpClient($httpClient)
+    {
+        $this->httpClient = (string) $httpClient;
+    }
 
-// require Bootstrap class
-require __DIR__.'/PequenoSpotifyModuleTest/Utils/Bootstrap.php';
-
-// include configuration file
-$files = array(__DIR__.'/TestConfiguration.php', __DIR__.'/TestConfiguration.php.dist');
-foreach ($files as $file) {
-    if (file_exists($file)) {
-        /** @noinspection PhpIncludeInspection */
-        $config = require $file;
-        break;
+    /**
+	 * Get the Http client manager key
+	 *
+	 * @return string
+	 */
+    public function getHttpClient()
+    {
+        return $this->httpClient;
     }
 }
-
-// throw if no valid configuration found
-if (!isset($config))
-    throw new \RuntimeException(sprintf('no valid configuration file found : %s', implode(', ', $files)));
-
-// init Boostrap class
-Bootstrap::init($config);

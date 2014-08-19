@@ -9,8 +9,7 @@
     stopOnFailure="false"
     processIsolation="false"
     backupGlobals="false"
-    syntaxCheck="true"
->
+    syntaxCheck="true">
 	<testsuite name="PequenoSpotifyModule Test Suite">
 		<directory>./tests</directory>
 	</testsuite>

@@ -18,7 +18,47 @@
 
 namespace PequenoSpotifyModule;
 
+use Zend\Http;
+
 class Spotify
 {
+    /** @var Http\Client */
+    private $httpClient;
 
+    /**
+	 * Class constructor
+	 * @access public
+	 * @param Http\Client $httpClient Http client
+	 */
+    public function __construct(Http\Client $httpClient = null)
+    {
+        $this->httpClient = $httpClient;
+    }
+
+    /**
+	 * Get current Http client instance
+	 * @access public
+	 * @return Http\Client
+	 */
+    public function getHttpClient()
+    {
+        if ($this->httpClient === null) {
+            $this->httpClient = new Http\Client();
+        }
+
+        return $this->httpClient;
+    }
+
+    /**
+	 * Set current Http client instance
+	 * @access public
+	 * @param Http\Client $httpClient Http client instance
+	 * @return Spotify
+	 */
+    public function setHttpClient(Http\Client $httpClient)
+    {
+        $this->httpClient = $httpClient;
+
+        return $this;
+    }
 }

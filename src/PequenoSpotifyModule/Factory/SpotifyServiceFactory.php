@@ -15,32 +15,27 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
+namespace PequenoSpotifyModule\Factory;
 
-// set namespace
-namespace PequenoSpotifyModuleTest;
+use PequenoSpotifyModule\Options\ModuleOptions;
+use PequenoSpotifyModule\Spotify;
+use Zend\ServiceManager\FactoryInterface;
+use Zend\ServiceManager\ServiceLocatorInterface;
 
-// set used namespaces
-use PequenoSpotifyModuleTest\Utils\Bootstrap;
+class SpotifyServiceFactory implements FactoryInterface
+{
+    /**
+	 * {@inheritdoc}
+	 */
+    public function createService(ServiceLocatorInterface $serviceLocator)
+    {
+        /** @var ModuleOptions $options */
+        $options = $serviceLocator->get('Pequeno\Services\Spotify\ModuleOptions');
 
-// enable all error reporting
-error_reporting(E_ALL | E_STRICT);
+        /** @var \Zend\Http\Client|null $httpClient */
+        $httpClient = $options->getHttpClient() ? $serviceLocator->get($options->getHttpClient()) : null;
 
-// require Bootstrap class
-require __DIR__.'/PequenoSpotifyModuleTest/Utils/Bootstrap.php';
-
-// include configuration file
-$files = array(__DIR__.'/TestConfiguration.php', __DIR__.'/TestConfiguration.php.dist');
-foreach ($files as $file) {
-    if (file_exists($file)) {
-        /** @noinspection PhpIncludeInspection */
-        $config = require $file;
-        break;
+        // return Spotify Service
+        return new Spotify($httpClient);
     }
 }
-
-// throw if no valid configuration found
-if (!isset($config))
-    throw new \RuntimeException(sprintf('no valid configuration file found : %s', implode(', ', $files)));
-
-// init Boostrap class
-Bootstrap::init($config);
