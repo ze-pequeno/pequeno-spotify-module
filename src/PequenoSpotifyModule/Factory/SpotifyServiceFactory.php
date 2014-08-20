@@ -18,7 +18,7 @@
 namespace PequenoSpotifyModule\Factory;
 
 use PequenoSpotifyModule\Options\ModuleOptions;
-use PequenoSpotifyModule\Spotify;
+use PequenoSpotifyModule\Services\Spotify;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
@@ -30,7 +30,7 @@ class SpotifyServiceFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
         /** @var ModuleOptions $options */
-        $options = $serviceLocator->get('Pequeno\Services\Spotify\ModuleOptions');
+        $options = $serviceLocator->get('Pequeno\Spotify\ModuleOptions');
 
         /** @var \Zend\Http\Client|null $httpClient */
         $httpClient = $options->getHttpClient() ? $serviceLocator->get($options->getHttpClient()) : null;

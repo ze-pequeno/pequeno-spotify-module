@@ -33,28 +33,28 @@ class ServiceManagerTest extends TestCase
     public function testWillInstanciateSpotifyServiceFromFactory()
     {
         // retrieve spotify from service from factory
-        $spotify = $this->getServiceManager()->get('Pequeno\Services\Spotify');
+        $spotify = $this->getServiceManager()->get('Pequeno\Spotify\Service');
 
         // assert spotify service is valid instance
-        $this->assertInstanceOf('PequenoSpotifyModule\Spotify', $spotify);
+        $this->assertInstanceOf('PequenoSpotifyModule\Services\Spotify', $spotify);
     }
 
     public function testWillInstanciateSpotifyServiceFromAlias()
     {
         // retrieve spotify from service from alias
-        $spotify = $this->getServiceManager()->get('pequeno.services.spotify');
+        $spotify = $this->getServiceManager()->get('pequeno.spotify.service');
 
         // assert spotify service is valid instance
-        $this->assertInstanceOf('PequenoSpotifyModule\Spotify', $spotify);
+        $this->assertInstanceOf('PequenoSpotifyModule\Services\Spotify', $spotify);
     }
 
     public function testSpotifyServiceFromAliasAndFactoryAreSame()
     {
         // retrieve spotify service from factory
-        $spotifyFromFactory = $this->getServiceManager()->get('Pequeno\Services\Spotify');
+        $spotifyFromFactory = $this->getServiceManager()->get('Pequeno\Spotify\Service');
 
         // retrieve spotify service from alias
-        $spotifyFromAlias = $this->getServiceManager()->get('pequeno.services.spotify');
+        $spotifyFromAlias = $this->getServiceManager()->get('pequeno.spotify.service');
 
         // assert instance are same
         $this->assertSame($spotifyFromFactory, $spotifyFromAlias);

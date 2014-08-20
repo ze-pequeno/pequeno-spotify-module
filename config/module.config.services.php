@@ -22,10 +22,10 @@ namespace PequenoSpotifyModule;
 // return service manager configuration
 return array(
     'aliases' => array(
-        'pequeno.services.spotify' => 'Pequeno\Services\Spotify',
+        'pequeno.spotify.service' => 'Pequeno\Spotify\Service',
     ),
     'factories' => array(
-	    'Pequeno\Services\Spotify\ModuleOptions' => 'PequenoSpotifyModule\Factory\ModuleOptionsFactory',
-	    'Pequeno\Services\Spotify' => 'PequenoSpotifyModule\Factory\SpotifyServiceFactory',
+	    'Pequeno\Spotify\ModuleOptions' => 'PequenoSpotifyModule\Factory\ModuleOptionsFactory',
+	    'Pequeno\Spotify\Service' => 'PequenoSpotifyModule\Factory\SpotifyServiceFactory',
     ),
 );
