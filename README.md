@@ -31,7 +31,7 @@ Then add `PequenoSpotifyModule` to your `config/application.config.php`.
 Installation without composer is not officially supported and requires you to manually install all dependencies
 that are listed in `composer.json`
 
-## Registered Service Names
+## Registered Services Name
 
  * `Pequeno\Spotify\Service`: a `PequenoSpotifyModule\Services\Spotify` instance
  * `pequeno.spotify.service`: an alias of `Pequeno\Spotify\Service`
