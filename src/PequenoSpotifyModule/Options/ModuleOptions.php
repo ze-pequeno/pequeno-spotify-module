@@ -22,30 +22,85 @@ use Zend\Stdlib\AbstractOptions;
 class ModuleOptions extends AbstractOptions
 {
     /**
+     * The client ID provided to you by Spotify when you register your application.
+     * @var string|null
+     * @see https://developer.spotify.com/web-api/authorization-guide
+     */
+    protected $clientId;
+
+    /**
+     * The application's client secret key, obtained when the application was registered with Spotify.
+     * @var string|null
+     * @see https://developer.spotify.com/web-api/authorization-guide
+     */
+    protected $clientSecret;
+
+    /**
 	 * Key of the Http client fetched from service locator
-	 *
 	 * @var string|null
 	 */
     protected $httpClient;
 
     /**
-	 * Set the Http client key
-	 *
-	 * @param  string $httpClient
-	 * @return void
-	 */
-    public function setHttpClient($httpClient)
+     * Set client ID provided to you by Spotify when you register your application
+     * @access public
+     * @param  string|null $clientId
+     * @return void
+     */
+    public function setClientId($clientId)
     {
-        $this->httpClient = (string) $httpClient;
+        $this->clientId = $clientId;
+    }
+
+    /**
+     * Get client ID provided to you by Spotify when you register your application
+     * @access public
+     * @return string|null
+     */
+    public function getClientId()
+    {
+        return $this->clientId;
+    }
+
+    /**
+     * Get application's client secret key, obtained when the application was registered with Spotify
+     * @access public
+     * @return string|null
+     */
+    public function getClientSecret()
+    {
+        return $this->clientSecret;
+    }
+
+    /**
+     * Set application's client secret key, obtained when the application was registered with Spotify
+     * @access public
+     * @param  string|null $clientSecret
+     * @return void
+     */
+    public function setClientSecret($clientSecret)
+    {
+        $this->clientSecret = $clientSecret;
     }
 
     /**
 	 * Get the Http client manager key
-	 *
-	 * @return string
+     * @access public
+     * @return string|null
 	 */
     public function getHttpClient()
     {
         return $this->httpClient;
+    }
+
+    /**
+     * Set the Http client key
+     * @access public
+     * @param  string|null $httpClient
+     * @return void
+     */
+    public function setHttpClient($httpClient)
+    {
+        $this->httpClient = (string) $httpClient;
     }
 }

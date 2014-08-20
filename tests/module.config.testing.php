@@ -23,8 +23,18 @@ namespace PequenoSpotifyModuleTestT;
 return array(
     'pequeno_spotify' => array(
         /**
-		 * Service name of the Http client instance. It is retrieved from the service manager.
-		 */
+         * The client ID provided to you by Spotify when you register your application.
+         * @see https://developer.spotify.com/web-api/authorization-guide
+         */
+        'client_id' => null,
+        /**
+         * The application's client secret key, obtained when the application was registered with Spotify.
+         * @see https://developer.spotify.com/web-api/authorization-guide
+         */
+        'client_secret' => null,
+        /**
+         * Service name of the Http client instance. It is retrieved from the service manager.
+         */
         'http_client' => null,
     ),
 );
