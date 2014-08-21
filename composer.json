@@ -17,21 +17,26 @@
             "homepage": "http://ze-pequeno.github.com/"
         }
     ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/ze-pequeno/pequeno-spotify-service"
+        }
+    ],
+    "minimum-stability": "dev",
     "require": {
-        "php": ">=5.3.3",
-        "zendframework/zend-http": ">=2.3.0",
-        "zendframework/zend-json": ">=2.3.0",
-        "zendframework/zend-uri": ">=2.3.0"
+        "php": ">=5.3.23",
+        "ze-pequeno/pequeno-spotify-service": "dev-master"
     },
 	"require-dev": {
-        "phpunit/phpunit": ">=3.7.0",
-        "zendframework/zendframework": ">=2.3.0",
-        "fabpot/php-cs-fixer": "dev-master",
-        "satooshi/php-coveralls": "dev-master"
+        "fabpot/php-cs-fixer": "*@dev",
+        "satooshi/php-coveralls": "*@dev",
+        "zendframework/zendframework": "~2.3",
+        "phpunit/phpunit": "3.7.*"
 	},
     "autoload": {
         "psr-0": {
-            "PequenoSpotifyModule": "src/"
+            "PequenoSpotifyModule\\": "src/"
         },
         "classmap": [
             "./Module.php"

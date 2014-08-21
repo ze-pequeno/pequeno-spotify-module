@@ -37,6 +37,6 @@ class SpotifyServiceFactoryTest extends PHPUnit_Framework_TestCase
         $factory = new SpotifyServiceFactory();
         $spotify  = $factory->createService($serviceManager);
 
-        $this->assertInstanceOf('PequenoSpotifyModule\Services\Spotify', $spotify);
+        $this->assertInstanceOf('PequenoService\Spotify\Spotify', $spotify);
     }
 }

@@ -17,8 +17,8 @@
  */
 namespace PequenoSpotifyModule\Factory;
 
+use PequenoService\Spotify\Spotify;
 use PequenoSpotifyModule\Options\ModuleOptions;
-use PequenoSpotifyModule\Services\Spotify;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
@@ -32,10 +32,28 @@ class SpotifyServiceFactory implements FactoryInterface
         /** @var ModuleOptions $options */
         $options = $serviceLocator->get('Pequeno\Spotify\ModuleOptions');
 
-        /** @var \Zend\Http\Client|null $httpClient */
-        $httpClient = $options->getHttpClient() ? $serviceLocator->get($options->getHttpClient()) : null;
+        // create service
+        $spotify = new Spotify();
 
-        // return Spotify Service
-        return new Spotify($httpClient);
+        /** @var \Zend\Http\Client $httpClient inject Http client if exist */
+        if ($options->getHttpClient() && ($httpClient = $serviceLocator->get($options->getHttpClient()))) {
+            $spotify->setHttpClient($httpClient);
+        }
+
+        // inject client id if exist
+        if ($clientId = $options->getClientId()) {
+            $spotify->setClientId($clientId);
+        }
+
+        // inject client secret if exist
+        if ($clientSecret = $options->getClientSecret()) {
+            $spotify->setClientSecret($clientSecret);
+        }
+
+        // unset references
+        unset ($httpClient, $clientId, $clientSecret);
+
+        // return service
+        return $spotify;
     }
 }
