@@ -75,12 +75,12 @@ class ServiceManagerFactory
     }
 
     /**
-	 * Load configuration needed by tests
-	 * @access protected
-	 * @static
-	 *
-	 * @throws RuntimeException
-	 */
+     * Load configuration needed by tests
+     * @access protected
+     * @static
+     *
+     * @throws RuntimeException
+     */
     protected static function initConfiguration()
     {
         // get tests path
@@ -97,16 +97,17 @@ class ServiceManagerFactory
         }
 
         // throw if no valid configuration found
-        if (static::$configuration === null)
+        if (static::$configuration === null) {
             throw new RuntimeException(sprintf('no valid configuration file found : %s', implode(', ', $files)));
+        }
     }
 
     /**
-	 * Get service manager instance
-	 * @access public
-	 * @static
-	 * @return ServiceManager
-	 */
+     * Get service manager instance
+     * @access public
+     * @static
+     * @return ServiceManager
+     */
     public static function getServiceManager()
     {
         // retrieve configuration

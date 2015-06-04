@@ -24,8 +24,8 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 class ModuleOptionsFactory implements FactoryInterface
 {
     /**
-	 * {@inheritDoc}
-	 */
+     * {@inheritDoc}
+     */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
         $config = $serviceLocator->get('Config');

@@ -25,8 +25,8 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 class SpotifyServiceFactory implements FactoryInterface
 {
     /**
-	 * {@inheritdoc}
-	 */
+     * {@inheritdoc}
+     */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
         /** @var ModuleOptions $options */
@@ -51,7 +51,7 @@ class SpotifyServiceFactory implements FactoryInterface
         }
 
         // unset references
-        unset ($httpClient, $clientId, $clientSecret);
+        unset($httpClient, $clientId, $clientSecret);
 
         // return service
         return $spotify;

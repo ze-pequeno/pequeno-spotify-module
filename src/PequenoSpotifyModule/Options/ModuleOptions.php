@@ -36,9 +36,9 @@ class ModuleOptions extends AbstractOptions
     protected $clientSecret;
 
     /**
-	 * Key of the Http client fetched from service locator
-	 * @var string|null
-	 */
+     * Key of the Http client fetched from service locator
+     * @var string|null
+     */
     protected $httpClient;
 
     /**
@@ -84,10 +84,10 @@ class ModuleOptions extends AbstractOptions
     }
 
     /**
-	 * Get the Http client manager key
+     * Get the Http client manager key
      * @access public
      * @return string|null
-	 */
+     */
     public function getHttpClient()
     {
         return $this->httpClient;
